@@ -1,16 +1,23 @@
 
+@import url('https://fonts.googleapis.com/css?family=Homemade+Apple|Open+Sans+Condensed:300');
+
 * {
   margin: 0;
   padding: 0;
     font-family: 'Open Sans Condensed', sans-serif;
 }
+
+
 .navbar a{
     font-size:30px;
     background-color: white;
     color:grey;
 }
 
+.nav-link{
+display: inline-block;
 
+}
 .header{
   background: url("/images/stack-books.jpg");
   background-size: cover;
@@ -28,7 +35,7 @@
 }
 
 h1{
-    font-family: 'Homemade Apple', cursive;
+    font-family: 'Homemade Apple', cursive !important;
     font-size: 100px;
 }
 h2{
