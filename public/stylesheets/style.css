@@ -1,0 +1,106 @@
+
+@import url('https://fonts.googleapis.com/css?family=Homemade+Apple|Open+Sans+Condensed:300');
+
+* {
+  margin: 0;
+  padding: 0;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+
+.navbar a{
+    font-size:30px;
+    background-color: white;
+    color:grey;
+}
+
+.nav-link{
+display: inline-block;
+
+}
+.header{
+  background: url("/images/stack-books.jpg");
+  background-size: cover;
+  height: 900px; 
+    color:white;
+  padding-top: 50px;
+  position:relative;
+}
+
+
+#intro{
+    padding-top: 7%;
+    text-shadow: 2px 2px 4px grey;
+    text-align:center;
+}
+
+h1{
+    font-family: 'Homemade Apple', cursive !important;
+    font-size: 100px;
+}
+h2{
+    font-size:60px;
+    padding-top: 5%
+}
+
+.flex-container {
+    padding:5%;
+  display: flex; /* or inline-flex */
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex-container div{
+    text-shadow: 2px 2px 4px grey;
+    height: 100px;
+    width: 200px;
+    font-size: 30px;
+    margin: 40px;
+    border: 2px solid white;
+    text-align:center;
+}
+
+#form {
+  margin: 30px auto;
+  width: 380px;
+}
+
+#form label {
+    font-size: 20px;
+  color: white;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+#form input,
+#form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#form button {
+  background: #094317;
+  border: 1px solid ;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  
+  transition: .3s ease background;
+  width: 100%;
+}
+
+#form button:hover {
+  background: #fff;
+  color: #094317;
+  transition: .3s ease background;
+}
