@@ -1,0 +1,47 @@
+<link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+<link rel="stylesheet" href="/stylesheets/style.scss" />
+
+
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand" href="#">Book Circle</a>
+	<ul class="nav navbar-nav navbar-right">
+      <li>
+        <a class="nav-link" href="#">About</a>
+      </li>
+		<li>
+     <a class="btn " href="#">Sign Up</a>
+		</li>
+			<li >
+     <a class="btn" href="#">Sign In</a>
+		</li>
+    </ul>
+</nav>
+
+
+<header class='header'>
+	<div id=intro >
+		<h1>Share the books you love <span class="glyphicon glyphicon-heart"></span></h1>
+		<h2> Join the Book Circle manage your readings and explore which books your friends recommend!</h2>
+	</div>
+	<section class = "flex-container">
+		<div>Share</div>
+		<div>Find</div>
+		<div>Recommend</div>
+	</section>
+	
+	<div class="input-group">
+	<span>Become A Member</span>
+  <form id="form" action="/signup" method="POST">
+    <label for="username">Username</label><br>
+    <input type="text" name="username"
+      placeholder="Username" class="form-control">
+
+    <label for="password">Password</label><br>
+    <input type="text" name="password"
+      placeholder="Password" class="form-control">
+
+		<button><i>Create account</i></button>
+  </form>
+		</div>
+</header>
