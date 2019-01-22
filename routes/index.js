@@ -7,6 +7,11 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
+// for testing dashboard
+router.get("/dashboard", (req, res, next) => {
+  res.render("User/dashboard", {layout:"User/layout"});
+});
+
 router.get("/:userid/dashboard", (req, res) => {
   User.find({
       _id: req.params._id
