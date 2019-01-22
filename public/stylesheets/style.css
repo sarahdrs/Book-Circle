@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Homemade+Apple|Open+Sans+Condensed:300');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+@import url("https://fonts.googleapis.com/css?family=Homemade+Apple|Open+Sans+Condensed:300");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300");
 
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
 }
 
 /* Naviagtion Bar */
 .navbar-brand {
   font-size: 40px !important;
-  color: #3C3851 !important;
+  color: #3c3851 !important;
 }
 
 .nav-item {
@@ -21,9 +21,9 @@
   color: grey;
 }
 
-.nav>li>a:hover {
+.nav > li > a:hover {
   background-color: transparent !important;
-  color: #3C3851 !important;
+  color: #3c3851 !important;
 }
 
 /* Header with background image */
@@ -36,22 +36,21 @@
   position: relative;
 }
 
-
 #intro {
   padding-top: 7%;
   text-shadow: 2px 2px 4px grey;
   text-align: center;
-  color: white
+  color: white;
 }
 
 h1 {
-  font-family: 'Homemade Apple', cursive !important;
+  font-family: "Homemade Apple", cursive !important;
   font-size: 100px !important;
 }
 
 h2 {
   font-size: 60px;
-  padding-top: 5%
+  padding-top: 5%;
 }
 
 .flex-container {
@@ -70,7 +69,6 @@ h2 {
   margin: 40px;
   border: 2px solid white;
   padding-top: 3%;
-
 }
 
 /* Sign In Form */
@@ -87,7 +85,7 @@ h2 {
 
 #form label {
   font-size: 20px;
-  color: #3C3851;
+  color: #3c3851;
   display: inline-block;
   margin-bottom: 10px;
   text-align: center;
@@ -105,7 +103,7 @@ h2 {
 }
 
 #form button {
-  background: #3C3851;
+  background: #3c3851;
   border: 1px solid;
   border-radius: 4px;
   color: #fff;
@@ -114,12 +112,111 @@ h2 {
   font-size: 20px;
   padding: 8px 16px;
   text-decoration: none;
-  transition: .3s ease background;
+  transition: 0.3s ease background;
   width: 100%;
 }
 
 #form button:hover {
   background: #fff;
-  color: #3C3851;
-  transition: .3s ease background;
+  color: #3c3851;
+  transition: 0.3s ease background;
+}
+
+.dashboard-body {
+  margin: 10px 25px 0px;
+}
+
+#findbook-button {
+  background: #3c3851;
+  border: 1px solid;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: 0.3s ease background;
+  width: 30%;
+}
+
+#findbook-button:hover {
+  background: #fff;
+  color: #3c3851;
+  transition: 0.3s ease background;
+}
+
+#db-left-side {
+  border: 1px solid black; /* nur für den Test der Layout-struktur, lösche ich später */
+  width: 20%;
+  float: left;
+}
+
+#db-left-side ul {
+  list-style-type: none;
+}
+
+#db-middle {
+  border: 1px solid black; /* nur für den Test der Layout-struktur, lösche ich später */
+  text-align: center;
+  width: 60%;
+  float: left;
+}
+
+#db-middle h2 {
+  padding: 10px;
+}
+
+#form-edit-profile {
+  width: 60%;
+  text-align: right;
+  vertical-align: top;
+  margin-bottom: 10px;
+}
+
+#form-edit-profile textarea {
+  vertical-align: top;
+}
+
+#db-right-side {
+  border: 1px solid black; /* nur für den Test der Layout-struktur, lösche ich später */
+  text-align: right;
+  width: 20%;
+  float: left;
+}
+
+#favorite-books {
+  display: flex;
+  height: 300px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.book img {
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+#friends-activity {
+  border: 1px solid black; /* nur für den Test der Layout-struktur, lösche ich später */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+  align-content: flex-start;
+}
+
+.friend {
+  margin-right: 10px;
+}
+
+.friend img {
+  height: 150px;
+  margin-bottom: 20px;
 }

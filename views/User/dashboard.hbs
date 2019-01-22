@@ -1,15 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
 
-  
-  <button><a href="hjhjhj">Find Book</a></button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
 
-<h2>My Books</h2>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+</head>
 
-{{#each users}}
-<div class="mybooks">
-  <div class="book">
-    <div class="book cover"><img src="blablabla"></div>
-    <h2> {{ this.favorites }}</h2>
+<body>
+
+  <div class="dashboard-body">
+    <div id="db-left-side">
+      <div id="user-profile-view">
+        <h4><b>Userfirst Userlast</b></h4>
+        <p>Description lsf jsdhg sjghjdshg jsdhgjdshkg jshgjshg jshgjsdhg ishgkhisdf ajsdhaf egkjg.</p>
+      </div>
+      <ul>
+        <li>Edit Profile</li>
+        <li>Another thing</li>
+        <li>Yet another thing</li>
+      </ul>
+    </div>
+    <div id="db-middle">
+      <div id="middle-top">
+        <a href="/find-book"><button id="findbook-button">Find Book</button></a>
+      </div>
+      <div id="db-middle-my-books">
+        <h2>My Books</h2>
+        <div id="favorite-books">
+          <div class="book">
+            <h4>Harry Potter</h4>
+            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+          </div>
+          <div class="book">
+            <h4>Harry Potter</h4>
+            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+          </div>
+          <div class="book">
+            <h4>Harry Potter</h4>
+            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+          </div>
+          <div class="book">
+            <h4>Harry Potter</h4>
+            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+          </div>
+          <div class="book">
+            <h4>Harry Potter</h4>
+            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+          </div>
+          <div class="book">
+            <h4>Harry Potter</h4>
+            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+          </div>
+        </div>
+
+
+        {{!-- {{#each user}}
+        <div class="mybooks">
+          <div class="book">
+            <div class="book cover"><img src="blablabla"></div>
+            <h2> {{ this.favorites }}</h2>
+          </div>
+        </div>
+        {{/each}} --}}
+
+      </div>
+
+
+    </div>
+
+    <div id="db-right-side">
+      <h2>What are your friends reading?</h2>
+      <div id="friends-activity">
+        <div class="friend">
+          <h4>Axel is reading Harry Potter</h4>
+          <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+        </div>
+        <div class="friend">
+          <h4>Sarah is reading Harry Potter</h4>
+          <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+        </div>
+        <div class="friend">
+          <h4>Steph is reading Harry Potter</h4>
+          <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
-{{/each}}
 
+
+
+
+
+</body>
+
+</html>
