@@ -1,21 +1,27 @@
 require('dotenv').config();
 
-const bodyParser   = require('body-parser');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const express      = require('express');
-const favicon      = require('serve-favicon');
-const hbs          = require('hbs');
-const mongoose     = require('mongoose');
-const logger       = require('morgan');
-const path         = require('path');
+const express = require('express');
+const favicon = require('serve-favicon');
+const hbs = require('hbs');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const path = require('path');
 const authRoutes = require("./routes/auth-routes");
+const jquery = require("jquery")
+
+
+
+
 
 mongoose.Promise = Promise;
 
 mongoose
   .connect(
-    "mongodb://localhost/book-circle",
-    { useNewUrlParser: true }
+    "mongodb://localhost/book-circle", {
+      useNewUrlParser: true
+    }
   )
   .then(x => {
     console.log(
@@ -38,7 +44,9 @@ const app = express();
 // Middleware Setup
 app.use(logger("dev"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 
 // Express View engine setup
