@@ -9,10 +9,12 @@ router.get("/", (req, res, next) => {
 
 router.get("/:userid/dashboard", (req, res) => {
   User.find({
-    _id: req.params._id
-  })
+      _id: req.params._id
+    })
     .then(user => {
-      res.render("User/dashboard", { user });
+      res.render("User/dashboard", {
+        user
+      });
     })
     .catch(err => {
       console.log(err, "there was an error");

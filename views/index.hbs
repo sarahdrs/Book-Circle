@@ -7,34 +7,34 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="/stylesheets/style.css" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
-
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-
-
-
 </head>
 
 <body>
 	{{!-- navigation bar --}}
-	<nav class="navbar navbar-expand-lg">
-		<a class="navbar-brand" href="/:userid/dashboard">Book Circle</a>
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a class="nav-link" href="#">About</a>
-			</li>
-			<li class="nav-item">
-				<a class="btn " href="#">Sign Up</a>
-			</li>
-			<li class="nav-item">
-				<a class="btn" href="#">Sign In</a>
-			</li>
-		</ul>
+	<nav class="navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Book Circle</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="#form">Sign Up</a></li>
+				<li class=" nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Sign In<span class="caret"></span></a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">Page 1-1</a>
+						<a class="dropdown-item" href="#">Page 1-2</a>
+						<a class="dropdown-item" href="#">Page 1-3</a>
+					</div>
+				</li>
+			</ul>
 	</nav>
 
 	{{!-- header --}}
 	<header class='header'>
-		<div id=intro>
+		<div id="intro">
 			<h1>Share the books you love <span class="glyphicon glyphicon-heart"></span></h1>
 			<h2> Join the Book Circle manage your readings and explore which books your friends recommend!</h2>
 		</div>
@@ -45,24 +45,20 @@
 		</section>
 	</header>
 
-	<div class="input-group">
-		<span>Become A Member</span>
+	<div>
 		<form id="form" action="/" method="POST">
 			{{#if message}}
 			<div>{{ message }}</div>
 			{{/if}}
+			<p>Become A Member</p>
 			<label for="user-email-address">Your email address</label><br>
-			<input type="text" id="email" name="email" placeholder="Enter email address" class="form-control">
+			<input type="email" id="email" name="email" placeholder="Enter email address" class="form-control">
 
 			<label for="password">Password</label><br>
 			<input type="text" id="password" name="password" placeholder="Enter password" class="form-control">
 
-			<button input type="submit"><i>Create account / Sign in</i></button>
+			<button input type="submit">Create Account</button>
 		</form>
-
 	</div>
-
-
 	<br><br>
-
 </body>
