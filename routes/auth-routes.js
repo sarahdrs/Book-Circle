@@ -76,13 +76,13 @@ authRoutes.post(
 // successfully logged in (private route)
 
 
-// authRoutes.get(
-//   "/User/dashboard",
-//   ensureLogin.ensureLoggedIn("signin"),
-//   (req, res) => {
-//     res.render("User/dashboard", { user: req.email });
-//   }
-// );
+authRoutes.get(
+  "/dashboard",
+  ensureLogin.ensureLoggedIn("signin"),
+  (req, res) => {
+    res.render("User/dashboard", { user: req.email });
+  }
+);
 
 
 // logout route
