@@ -21,7 +21,7 @@
 			<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 			<li class="nav-item"><a class="nav-link" href="#form">Sign Up</a></li>
 			<li class=" nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Sign In<span class="caret"></span></a>
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/signin" role="button">Sign In<span class="caret"></span></a>
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="#">Page 1-1</a>
 					<a class="dropdown-item" href="#">Page 1-2</a>
@@ -47,17 +47,18 @@
 
 	<div>
 		<form id="form" action="/" method="POST">
-			{{#if message}}
-			<div>{{ message }}</div>
-			{{/if}}
+		
 			<p>Become A Member</p>
 			<label for="user-email-address">Your email address</label><br>
 			<input type="email" id="email" name="email" placeholder="Enter email address" class="form-control">
 
 			<label for="password">Password</label><br>
-			<input type="text" id="password" name="password" placeholder="Enter password" class="form-control">
+			<input type="password" id="password" name="password" placeholder="Enter password" class="form-control">
 
 			<button input type="submit">Create Account</button>
+				{{#if message}}
+			<div>{{ message }}</div>
+			{{/if}}
 		</form>
 	</div>
 	<br><br>

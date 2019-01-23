@@ -1,0 +1,17 @@
+
+	<div>
+		<form id="form" action="/signin" method="POST">
+		
+			<p>Login</p>
+			<label for="user-email-address">Your email address</label><br>
+			<input type="email" id="email" name="email" placeholder="Enter email address" class="form-control">
+
+			<label for="password">Password</label><br>
+			<input type="text" id="password" name="password" placeholder="Enter password" class="form-control">
+
+			<button input type="submit">Login</button>
+				{{#if message}}
+			<div>{{ message }}</div>
+			{{/if}}
+		</form>
+	</div>
