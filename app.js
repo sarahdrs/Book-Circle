@@ -12,6 +12,7 @@ const index = require("./routes/index");
 const authRoutes = require("./routes/auth-Routes");
 const jquery = require("jquery");
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -44,7 +45,8 @@ app.use(flash());
 
 app.use(
   session({
-    secret: "stupid"
+    secret: "stupid",
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
     //resave: true,
     //saveUninitialized: true
   })
@@ -64,8 +66,8 @@ passport.deserializeUser((id, cb) => {
 });
 
 passport.use(
-  new LocalStrategy((username, password, next) => {
-    User.findOne({ username }, (err, user) => {
+  new LocalStrategy({ usernameField: "email" }, (param1, password, next) => {
+    User.findOne({ email: param1 }, (err, user) => {
       if (err) {
         return next(err);
       }

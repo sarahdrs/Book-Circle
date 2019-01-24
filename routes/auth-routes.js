@@ -11,7 +11,7 @@ const bcryptSalt = 10;
 // signup route
 
 authRoutes.get("/", (req, res, next) => {
-  res.render("/signup");
+  res.render("/");
 });
 
 authRoutes.post("/", (req, res, next) => {
@@ -66,29 +66,19 @@ authRoutes.get("/signin", (req, res, next) => {
 authRoutes.post(
   "/signin",
   passport.authenticate("local", {
-    successRedirect: "/User/dashboard",
+    successRedirect: "/dashboard",
     failureRedirect: "/",
     failureFlash: true,
     passReqToCallback: true
   })
 );
 
-// successfully logged in (private route)
-
-
-authRoutes.get(
-  "/dashboard",
-  ensureLogin.ensureLoggedIn("signin"),
-  (req, res) => {
-    res.render("User/dashboard", { user: req.email });
-  }
-);
 
 
 // logout route
 authRoutes.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/signin");
+  res.redirect("/");
 });
 
 module.exports = authRoutes;
