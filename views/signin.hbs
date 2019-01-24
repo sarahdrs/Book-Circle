@@ -31,37 +31,25 @@
 		</ul>
 	</nav>
 	{{!-- navigation bar --}}
-
-	{{!-- header --}}
-	<header class='header'>
-		<div id="intro">
-			<h1>Share the books you love <span class="glyphicon glyphicon-heart"></span></h1>
-			<h2> Join the Book Circle manage your readings and explore which books your friends recommend!</h2>
-		</div>
-		<section class="flex-container">
-			<div>Share</div>
-			<div>Find</div>
-			<div>Recommend</div>
-		</section>
-	</header>
-
+	
+	
+	
 	<div>
-		<form id="form" action="/" method="POST">
+		<form id="form" action="/signin" method="POST">
 		
-			<p>Become A Member</p>
+			<p>Login</p>
 			<label for="user-email-address">Your email address</label><br>
 			<input type="email" id="email" name="email" placeholder="Enter email address" class="form-control">
 
 			<label for="password">Password</label><br>
-			<input type="password" id="password" name="password" placeholder="Enter password" class="form-control">
+			<input type="text" id="password" name="password" placeholder="Enter password" class="form-control">
 
-			<button input type="submit">Create Account</button>
+			<button input type="submit">Login</button>
 				{{#if message}}
 			<div>{{ message }}</div>
 			{{/if}}
 		</form>
 	</div>
-	<br><br>
-</body>
 
-</html>
+		<br><br>
+</body>

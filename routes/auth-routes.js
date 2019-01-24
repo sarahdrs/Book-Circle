@@ -1,15 +1,15 @@
-// routes/auth-routes.js
 const express = require("express");
 const authRoutes = express.Router();
-
-// User model
+const passport = require("passport");
+const ensureLogin = require("connect-ensure-login");
 const User = require("../models/user");
 
-// Bcrypt to encrypt passwords
+// Add bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-//signup & signin
+// signup route
+
 authRoutes.get("/", (req, res, next) => {
   res.render("/");
 });
@@ -19,28 +19,66 @@ authRoutes.post("/", (req, res, next) => {
   const password = req.body.password;
 
   if (email === "" || password === "") {
-    console.log("no email and PW entered")
     res.render("index", {
-      message: "Please enter your email address and password"
+      message: "Please enter your email address and password."
     });
     return;
   }
 
-  const salt = bcrypt.genSaltSync(bcryptSalt);
-  const hashPass = bcrypt.hashSync(password, salt);
+  User.findOne({ email })
+    .then(existinguser => {
+      if (existinguser !== null) {
+        res.render("index", {
+          message: "This email address is already registered."
+        });
+        return;
+      }
 
-  const newUser = new User({
-    email,
-    password: hashPass
-  });
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+      const hashPass = bcrypt.hashSync(password, salt);
 
-  newUser.save(err => {
-    if (err) {
-      res.render("/", { message: "Please try again, something went wrong" });
-    } else {
-      res.redirect("/");
-    }
-  });
+      const newUser = new User({
+        email,
+        password: hashPass
+      });
+
+      newUser.save(err => {
+        if (err) {
+          res.render("index", {
+            message: "Ooops, something went wrong.Please try again."
+          });
+        } else {
+          res.redirect("/signin");
+        }
+      });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+// signin route
+
+authRoutes.get("/signin", (req, res, next) => {
+  res.render("signin");
+});
+
+authRoutes.post(
+  "/signin",
+  passport.authenticate("local", {
+    successRedirect: "/dashboard",
+    failureRedirect: "/",
+    failureFlash: true,
+    passReqToCallback: true
+  })
+);
+
+
+
+// logout route
+authRoutes.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
 });
 
 module.exports = authRoutes;

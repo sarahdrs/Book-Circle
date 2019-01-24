@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 const books = require('google-books-search');
+const ensureLogin = require("connect-ensure-login");
+
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -51,19 +53,6 @@ router.get("/find-book", (req, res, next) => {
   });}
 });
 
-// // implement book search from npm package 
-// router.get('/book-details', (req, res) => {
-//   books.search(req.query.book, function (error, results) {
-//     if (!error) {
-//       let items = results[0].items
-//       res.render('User/book-details', {items: results})
-
-//       console.log(results);
-//     } else {
-//       console.log(error);
-//     }
-//   })
-// })
 
 router.get("/:userid/dashboard", (req, res) => {
   User.find({
@@ -76,11 +65,30 @@ router.get("/:userid/dashboard", (req, res) => {
     })
     .catch(err => {
       console.log(err, "there was an error");
+    })
+  })
+// successfully logged in (private routes)
+
+router.get(
+  "/dashboard",
+  ensureLogin.ensureLoggedIn("signin"),
+  (req, res) => {
+    res.render("User/dashboard", {
+      layout: "User/layout",
+      title: "Hello, Username"
     });
+  }
+);
+    
+
+
+// for testing profile editing
+router.get("/editprofile", (req, res, next) => {
+  res.render("User/edit-profile", {
+    layout: "User/layout",
+    title: "Hello, Username"
+  });
 });
-
-
-
 
 
 module.exports = router;
