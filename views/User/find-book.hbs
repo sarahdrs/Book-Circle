@@ -1,0 +1,13 @@
+<form action="/find-book" method="GET">
+  <label for="">Find a book</label>
+  <input id="form" type="text" name="book" id="">
+  <button id="theButton" type="submit">SEARCH</button>
+</form>
+
+{{message}}
+
+{{#each items}}
+<ul>
+  <li>{{this.volumeInfo.title}}</li>
+</ul>
+{{/each}}

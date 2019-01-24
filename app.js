@@ -10,10 +10,7 @@ const logger = require('morgan');
 const path = require('path');
 const authRoutes = require("./routes/auth-routes");
 const jquery = require("jquery")
-
-
-
-
+const books = require('google-books-search');
 
 mongoose.Promise = Promise;
 
