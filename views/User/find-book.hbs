@@ -4,10 +4,13 @@
   <button id="theButton" type="submit">SEARCH</button>
 </form>
 
-{{message}}
 
-{{#each items}}
+
+{{#each results}}
 <ul>
-  <li>{{this.volumeInfo.title}}</li>
+  <li><b>{{this.title}}</b>b></li>
+  <li>Written by: {{this.authors}}</li>
+  <img src="{{this.thumbnail}}" alt={{this.title}}>
+  <br><br>
 </ul>
 {{/each}}
