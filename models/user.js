@@ -8,12 +8,7 @@ const userSchema = new Schema({
   password: String,
   picture: String,
   description: String,
-  favorites: [
-    {
-      id: String,
-      title: String
-    }
-  ],
+  favorites: [],
   friends: [
     {
       id: String
