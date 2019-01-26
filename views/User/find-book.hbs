@@ -1,30 +1,39 @@
 <div class="search-container">
-<form class=" form-control-lg" action="/find-book" method="GET">
-  <label for="">Find a book</label><br>
-<div class="input-group input-group-lg ">
-<div class="input-group-prepend input-group-lg">
-    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Title</button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Author</a>
-      <a class="dropdown-item" href="#">Genre</a>
+  <form class=" form-control-lg" action="/find-book" method="GET">
+    <label for="">Find a book</label><br>
+    <div class="input-group input-group-lg ">
+      <div class="input-group-prepend input-group-lg">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Title</button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Author</a>
+          <a class="dropdown-item" href="#">Genre</a>
+        </div>
+        <input class="form-control" id="form" type="text" name="book" placeholder="Harry Potter...">
+        <button class="btn btn-outline-success btn-lg" type="submit">SEARCH</button>
+      </div>
     </div>
-  <input class="form-control" id="form" type="text" name="book" placeholder="Harry Potter...">
-  <button class="btn btn-outline-success btn-lg" type="submit">SEARCH</button>
-  </div>
-  </div>
-</form>
+  </form>
 </div>
 
 
 <div class="results-container">
-{{#each results}}
-<ul>
-  <li><b>{{this.title}}</b></li>
-  <li>Written by: {{this.authors}}</li>
-  <img src="{{this.thumbnail}}" alt={{this.title}}>
-  <br>
-  <a href="/book-details/{{this.id}}">More detail</a>
-  <br><br>
-</ul>
-{{/each}}
+  {{#each results}}
+  <ul>
+    <li>
+      <div>
+        <img src="{{this.thumbnail}}" alt={{this.title}}>
+      </div>
+      <div class="book-detail">
+        <p class="result-item">{{this.title}}</p><br>
+        <p class="result-item">{{this.subtitle}}</p><br>
+        <p class="result-item">{{this.authors}}</p><br>
+        <p class="result-item">{{this.categories}}</p>
+      </div>
+      <div>
+      <a href= "/book-details/{{this.id}}">More Details</a>
+      </div>
+    </li>
+  </ul>
+  {{/each}}
 </div>

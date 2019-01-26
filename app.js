@@ -10,7 +10,6 @@ const logger = require("morgan");
 const path = require("path");
 const index = require("./routes/index");
 const authRoutes = require("./routes/auth-Routes");
-const jquery = require("jquery");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const bcrypt = require("bcrypt");
@@ -18,7 +17,9 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 const books = require('google-books-search');
-
+const jquery = require("jquery");
+const popper=require('popper.js');
+// const bootstrap = require('bootstrap');
 
 
 mongoose

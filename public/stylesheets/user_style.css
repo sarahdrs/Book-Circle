@@ -37,8 +37,17 @@ label{
 #form{
   width: 35rem;
 }
-.results-container{
+
+.results-container li{
   display:flex;
-  flex-direction:column;
   justify-content: center;
+  height: 250px;
+}
+.results-container li div{
+  height: 130px;
+  width:120px;
+}
+
+.book-detail p{
+  /* padding-bottom: 3px; */
 }

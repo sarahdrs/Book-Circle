@@ -25,7 +25,6 @@ var options = {
   limit: 15,
   type: "books",
   order: "relevance",
-  //lang: 'de'
   lang: false
 };
 
@@ -73,53 +72,6 @@ books.lookup(bookID, function(error, result) {
 
 });
 })
-
-
-
-// router.get("/book-details/:bookid", (req, res, next) => {
-//   if (req.params) {
-//     books.search(req.params, optionsBook, function(error, results) {
-//       let results3 = results;
-//       let message = "";
-//       console.log(results);
-//       if (results.length === 0) {
-//         message = "Try Harry Potter";
-//         results3 = [{ title: "" }];
-//       }
-//       if (!error) {
-        // res.render("User/book-details", {
-        //   results,
-        //   message,
-        //   layout: "User/layout"
-        // });
-//       } else {
-//         console.log(error);
-//       }
-//     });
-//   } else {
-//     res.render("User/find-book", {
-//       layout: "User/layout"
-//     });
-//   }
-// });
-
-// router.get("/book-details/:bookid", (req, res, next) => {
-//   let bookid = req.params.bookid;
-//   let message = "";
-//   console.log("ID IS :" + bookid);
-//   books.search(req.params, function(error, results) {
-//     if (!error) {
-//       res.render("User/book-detail", {
-//         results,
-//         message,
-//         layout: "User/layout"
-//       });
-//     } else {
-//       console.log(error);
-//     }
-//   });
-// } 
-// );
 
 router.get("/:userid/dashboard", (req, res) => {
   User.find({
