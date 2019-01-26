@@ -10,7 +10,8 @@ const userSchema = new Schema({
   description: String,
   favorites: [
     {
-      id: String
+      id: String,
+      title: String
     }
   ],
   friends: [

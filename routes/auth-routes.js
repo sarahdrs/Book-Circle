@@ -17,6 +17,8 @@ authRoutes.get("/", (req, res, next) => {
 authRoutes.post("/", (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
 
   if (email === "" || password === "") {
     res.render("index", {
@@ -39,7 +41,9 @@ authRoutes.post("/", (req, res, next) => {
 
       const newUser = new User({
         email,
-        password: hashPass
+        password: hashPass,
+        firstname,
+        lastname
       });
 
       newUser.save(err => {
@@ -72,8 +76,6 @@ authRoutes.post(
     passReqToCallback: true
   })
 );
-
-
 
 // logout route
 authRoutes.get("/logout", (req, res) => {
