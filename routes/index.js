@@ -24,8 +24,13 @@ var options = {
   offset: 0,
   limit: 15,
   type: "books",
+<<<<<<< HEAD
   order: "relevance"
   //lang: 'de'
+=======
+  order: "relevance",
+  lang: false,
+>>>>>>> 59c9531e2e38ef1cbc6c812fdc0348d0fd75d85a
 };
 
 

@@ -23,3 +23,22 @@
 .navbar button {
   float: right;
 }
+
+/* layout find-book */
+.search-container{
+  display:flex;
+  justify-content:center;
+}
+label{
+  font-size:5rem;
+  padding: 5% 25%;
+  
+}
+#form{
+  width: 35rem;
+}
+.results-container{
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+}
