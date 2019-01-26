@@ -25,7 +25,10 @@ var options = {
   limit: 15,
   type: "books",
   order: "relevance"
+  //lang: 'de'
 };
+
+
 
 router.get("/find-book", (req, res, next) => {
   if (req.query.book) {
@@ -38,10 +41,11 @@ router.get("/find-book", (req, res, next) => {
         results3 = [{ title: "" }];
       }
       if (!error) {
-        res.render(
-          "User/find-book",
-          { results, message, layout: "User/layout" }
-        );
+        res.render("User/find-book", {
+          results,
+          message,
+          layout: "User/layout"
+        });
       } else {
         console.log(error);
       }
@@ -52,6 +56,69 @@ router.get("/find-book", (req, res, next) => {
     });
   }
 });
+
+
+router.get("/book-details/:bookid", (req, res, next) => {
+  let bookID = req.params.bookid;
+  let message = "";
+  console.log("THE ID IS: " + bookID)
+books.lookup(bookID, function(error, result) {
+  console.log("THE BOOK IS " + result.title)
+   res.render("User/book-details", {
+    result,
+    message,
+    layout: "User/layout"
+  });
+
+});
+})
+
+
+
+// router.get("/book-details/:bookid", (req, res, next) => {
+//   if (req.params) {
+//     books.search(req.params, optionsBook, function(error, results) {
+//       let results3 = results;
+//       let message = "";
+//       console.log(results);
+//       if (results.length === 0) {
+//         message = "Try Harry Potter";
+//         results3 = [{ title: "" }];
+//       }
+//       if (!error) {
+        // res.render("User/book-details", {
+        //   results,
+        //   message,
+        //   layout: "User/layout"
+        // });
+//       } else {
+//         console.log(error);
+//       }
+//     });
+//   } else {
+//     res.render("User/find-book", {
+//       layout: "User/layout"
+//     });
+//   }
+// });
+
+// router.get("/book-details/:bookid", (req, res, next) => {
+//   let bookid = req.params.bookid;
+//   let message = "";
+//   console.log("ID IS :" + bookid);
+//   books.search(req.params, function(error, results) {
+//     if (!error) {
+//       res.render("User/book-detail", {
+//         results,
+//         message,
+//         layout: "User/layout"
+//       });
+//     } else {
+//       console.log(error);
+//     }
+//   });
+// } 
+// );
 
 router.get("/:userid/dashboard", (req, res) => {
   User.find({
@@ -66,6 +133,7 @@ router.get("/:userid/dashboard", (req, res) => {
       console.log(err, "there was an error");
     });
 });
+
 // successfully logged in (private routes)
 
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {

@@ -8,9 +8,11 @@
 
 {{#each results}}
 <ul>
-  <li><b>{{this.title}}</b>b></li>
+  <li><b>{{this.title}}</b></li>
   <li>Written by: {{this.authors}}</li>
   <img src="{{this.thumbnail}}" alt={{this.title}}>
+  <br>
+  <a href="/book-details/{{this.id}}">More detail</a>
   <br><br>
 </ul>
 {{/each}}
