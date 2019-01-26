@@ -24,7 +24,7 @@ var options = {
   offset: 0,
   limit: 15,
   type: "books",
-  order: "relevance",
+  // order: "relevance",
   lang: false,
 };
 
