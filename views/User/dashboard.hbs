@@ -17,11 +17,16 @@
   <div class="dashboard-body">
     <div id="db-left-side">
       <div id="user-profile-view">
-        <h4><b>Userfirst Userlast</b></h4>
-        <p>Description lsf jsdhg sjghjdshg jsdhgjdshkg jshgjshg jshgjsdhg ishgkhisdf ajsdhaf egkjg.</p>
+
+        <h4><b>{{user.firstname}}</b></h4>
+
+        <p>{{user.description}}</p>
+        {{#unless user.description}}
+        <p>I'm {{user.firstname}} and I love books.</p>
+        {{/unless}}
       </div>
       <ul>
-        <li>Edit Profile</li>
+        <li><a href="/editprofile">Edit Profile</a></li>
         <li>Another thing</li>
         <li>Yet another thing</li>
         <li><a href="/logout">Logout</a></li>
@@ -34,7 +39,13 @@
       <div id="db-middle-my-books">
         <h2>My Books</h2>
         <div id="favorite-books">
+          {{#each user.favorites}}
           <div class="book">
+            <h4>{{this.title}}</h4>
+            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+          </div>
+          {{/each}}
+          {{!-- <div class="book">
             <h4>Harry Potter</h4>
             <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
           </div>
@@ -57,7 +68,7 @@
           <div class="book">
             <h4>Harry Potter</h4>
             <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
-          </div>
+          </div> --}}
         </div>
 
 

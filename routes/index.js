@@ -9,14 +9,7 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-// for testing dashboard
-router.get("/dashboard", (req, res, next) => {
-  res.render("User/dashboard", {
-    layout: "User/layout"
-  });
-});
-
-// for testing find-book
+//find-book
 
 var options = {
   key: "",
@@ -25,7 +18,7 @@ var options = {
   limit: 15,
   type: "books",
   order: "relevance",
-  lang: false,
+  lang: false
 };
 
 router.get("/find-book", (req, res, next) => {
@@ -39,10 +32,11 @@ router.get("/find-book", (req, res, next) => {
         results3 = [{ title: "" }];
       }
       if (!error) {
-        res.render(
-          "User/find-book",
-          { results, message, layout: "User/layout" }
-        );
+        res.render("User/find-book", {
+          results,
+          message,
+          layout: "User/layout"
+        });
       } else {
         console.log(error);
       }
@@ -54,34 +48,46 @@ router.get("/find-book", (req, res, next) => {
   }
 });
 
-router.get("/:userid/dashboard", (req, res) => {
-  User.find({
-    _id: req.params._id
-  })
-    .then(user => {
-      res.render("User/dashboard", {
-        user
-      });
-    })
-    .catch(err => {
-      console.log(err, "there was an error");
-    });
-});
 // successfully logged in (private routes)
 
+//dashboard
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
+  console.log("REQ USER", req.user._id);
+
   res.render("User/dashboard", {
+    user: req.user,
     layout: "User/layout",
-    title: "Hello, Username"
+    title: "Hello, " + req.user.firstname + "!"
   });
 });
 
 // for testing profile editing
-router.get("/editprofile", (req, res, next) => {
+router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   res.render("User/edit-profile", {
+    user: req.user,
     layout: "User/layout",
-    title: "Hello, Username"
+    title: "Hi," + req.user.firstname
   });
 });
 
+// router.post("/editprofile", ensureLogin.ensureLoggedIn("signin") => {
+//     req.user
+//       .updateOne(
+//         (req.user.Router_id = req.params._id),
+//         (req.user.firstname = req.body.firstname),
+//         (req.user.lastname = req.body.lastname),
+//         (req.user.description = req.body.description)
+//       )
+//       .then(req.user.save())
+//       // console
+//       //   .log(req.user)
+//       .then(() => {
+//         res.render("User/edit-profile", {
+//           user: req.user,
+//           layout: "User/layout",
+//           title: "Hi," + req.user.firstname
+//         });
+//       });
+//   }
+// );
 module.exports = router;
