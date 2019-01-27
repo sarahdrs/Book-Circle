@@ -64,7 +64,7 @@ router.get("/book-details/:bookid", (req, res, next) => {
 });
 
  router.post("/book-details",ensureLogin.ensureLoggedIn("signin"), (req,res,next) => {
-   const userID = req.user
+   const userID = req.user._id
    console.log("Der User ist" + userID)
    document.getElementById("save-book").onclick = function(){
      const bookID = result.bookid

@@ -1,16 +1,16 @@
+<p class="details">Book Details</p>
 
-BOOK DETAILS
+<div class="details-container">
+  <div>
+    <img class="book-title" src="{{result.thumbnail}}" alt={{result.title}}>
+  </div>
+  <p class= >{{result.title}}</p>
+  <div>
+    <p>Written by: {{result.authors}}</p>
+    <p>Published: {{result.publishedDate}}</p>
+    <p>Description: {{{result.description}}}</p>
+  </div>
 
-<ul>
-  <br><br>
-  <li><b>{{result.title}}</b></li>
-  <br>
-  <img src="{{result.thumbnail}}" alt={{result.title}}>
-  <br>
-  <li>Written by: {{result.authors}}</li>
-    <li>Published: {{result.publishedDate}}</li>
-  <li>Description: {{{result.description}}}</li>
-  <br><br>
-  <a href="/find-book/?book={{result.title}}">Back to search results</a><br>
-  <a id= "save-book" action = "/book-details" method="POST" href="">Add To Favorites</a>
-</ul>
+</div>
+<a class="badge badge-secondary" href="/find-book/?book={{result.title}}">Back to search results</a><br>
+<a class="badge badge-secondary" id="save-book" action="/book-details" method="POST" href="">Add To Favorites</a>

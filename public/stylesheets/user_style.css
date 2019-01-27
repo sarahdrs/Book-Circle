@@ -25,29 +25,82 @@
 }
 
 /* layout find-book */
-.search-container{
-  display:flex;
-  justify-content:center;
+.search-container {
+  display: flex;
+  justify-content: center;
 }
-label{
-  font-size:5rem;
+
+label {
+  font-size: 5rem;
   padding: 5% 25%;
-  
+
 }
-#form{
+
+#form {
   width: 35rem;
 }
 
-.results-container li{
-  display:flex;
-  justify-content: center;
-  height: 250px;
-}
-.results-container li div{
-  height: 130px;
-  width:120px;
+#results {
+  font-size: 2rem;
+  margin-left: 25%;
+  margin-top: 3%;
+  display: none;
 }
 
-.book-detail p{
-  /* padding-bottom: 3px; */
+.results-container {
+  display: grid;
+  margin-bottom: 2rem;
+  grid-gap: 0.1rem;
+  padding: 0.1rem;
+  grid-template-columns: 10rem 30rem 10rem;
+  grid-auto-rows: 15rem;
+  margin-left: 23%;
+  width: 52rem;
+}
+
+.results-container>div {
+
+  text-align: center;
+}
+
+.result-title {
+  font-size: 23px;
+  padding-top: 2rem;
+}
+
+.result-subtitle {
+  font-size: 20px;
+}
+
+.result-authors {
+  font-size: 20px;
+}
+
+.result-categories {
+  font-size: 20px;
+}
+
+.book-details {
+  margin-top: 60%;
+  font-size: 20px !important;
+}
+
+.result-break {
+  width: 52rem;
+  margin-left: 25%;
+}
+
+/* layout book-detail */
+
+.details-container{
+  display:inline-block;
+}
+.book-title{
+  width: 10rem;
+  height:20rem;
+}
+.details{
+  display: flex;
+  justify-content: center;
+  font-size: 4rem;
 }

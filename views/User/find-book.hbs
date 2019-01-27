@@ -10,30 +10,30 @@
           <a class="dropdown-item" href="#">Genre</a>
         </div>
         <input class="form-control" id="form" type="text" name="book" placeholder="Harry Potter...">
-        <button class="btn btn-outline-success btn-lg" type="submit">SEARCH</button>
+        <button id="searchBtn" class="btn btn-outline-success btn-lg" type="submit">SEARCH</button>
       </div>
     </div>
   </form>
 </div>
+<p id="results">Results:</p>
+<hr>
 
 
+
+{{#each results}}
 <div class="results-container">
-  {{#each results}}
-  <ul>
-    <li>
-      <div>
-        <img src="{{this.thumbnail}}" alt={{this.title}}>
-      </div>
-      <div class="book-detail">
-        <p class="result-item">{{this.title}}</p><br>
-        <p class="result-item">{{this.subtitle}}</p><br>
-        <p class="result-item">{{this.authors}}</p><br>
-        <p class="result-item">{{this.categories}}</p>
-      </div>
-      <div>
-      <a href= "/book-details/{{this.id}}">More Details</a>
-      </div>
-    </li>
-  </ul>
-  {{/each}}
+  <div>
+    <img src="{{this.thumbnail}}" alt={{this.title}}>
+  </div>
+  <div class="book-detail">
+    <p class="result-title">{{this.title}}</p>
+    <p class="result-subtitle">{{this.subtitle}}</p>
+    <p class="result-authors">{{this.authors}}</p>
+    <p class="result-categories">{{this.categories}}</p>
+  </div>
+  <div>
+    <a class="book-details badge badge-secondary" href="/book-details/{{this.id}}">More Details</a>
+  </div>
 </div>
+<hr class="result-break">
+{{/each}}
