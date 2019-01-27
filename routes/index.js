@@ -63,27 +63,33 @@ router.get("/book-details/:bookid", (req, res, next) => {
   });
 });
 
- router.post("/book-details",ensureLogin.ensureLoggedIn("signin"), (req,res,next) => {
-   const userID = req.user
-   console.log("Der User ist" + userID)
-   document.getElementById("save-book").onclick = function(){
-     const bookID = result.bookid
-     console.log("Das ist die Book ID" + bookID)
-     User.findByIdAndUpdate(userID, { $push: { favorites: bookID }},  {safe: true, upsert: true},
-      function(err, doc) {
-          if(err){
-          console.log(err);
-          }else{
-          //do stuff
+router.post(
+  "/book-details",
+  ensureLogin.ensureLoggedIn("signin"),
+  (req, res, next) => {
+    const userID = req.user;
+    console.log("Der User ist" + userID);
+    document.getElementById("save-book").onclick = function() {
+      const bookID = result.bookid;
+      console.log("Das ist die Book ID" + bookID);
+      User.findByIdAndUpdate(
+        userID,
+        { $push: { favorites: bookID } },
+        { safe: true, upsert: true },
+        function(err, doc) {
+          if (err) {
+            console.log(err);
+          } else {
+            //do stuff
           }
-      }
-  );
-   }
-   res.render("User/book-details", {
-    layout: "User/layout"
-  });
- })
-
+        }
+      );
+    };
+    res.render("User/book-details", {
+      layout: "User/layout"
+    });
+  }
+);
 
 //dashboard
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
@@ -96,7 +102,6 @@ router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   });
 });
 
-
 // for testing profile editing
 router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   res.render("User/edit-profile", {
@@ -106,24 +111,50 @@ router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   });
 });
 
-// router.post("/editprofile", ensureLogin.ensureLoggedIn("signin") => {
-//     req.user
-//       .updateOne(
-//         (req.user.Router_id = req.params._id),
-//         (req.user.firstname = req.body.firstname),
-//         (req.user.lastname = req.body.lastname),
-//         (req.user.description = req.body.description)
-//       )
-//       .then(req.user.save())
-//       // console
-//       //   .log(req.user)
-//       .then(() => {
-//         res.render("User/edit-profile", {
-//           user: req.user,
-//           layout: "User/layout",
-//           title: "Hi," + req.user.firstname
-//         });
+// router.post(
+//   "/editprofile",
+//   ensureLogin.ensureLoggedIn("signin"),
+//   (req, res) => {
+//     User.findOne({ name: req.user.firstname }, function(err, User) {
+//       (User.firstname = req.body.firstname),
+//         (User.lastname = req.body.lastname),
+//         (User.description = req.body.description);
+//     }).then(User.save());
+//     console.log(req.user).then(() => {
+//       res.render("User/edit-profile", {
+//         user: req.user,
+//         layout: "User/layout",
+//         title: "Hi," + req.user.firstname
 //       });
+//     });
 //   }
 // );
+
+router.post(
+  "/editProfile",
+  ensureLogin.ensureLoggedIn("signin"),
+  (req, res) => {
+    User.findById(req.user._id, function(err, user) {
+      if (!user) {
+        return res.redirect("/edit");
+      } else {
+        var firstname = req.body.firstname;
+        var lastname = req.body.lastname;
+        var description = req.body.description;
+
+        user.firstname = firstname;
+        user.lastname = lastname;
+        user.description = description;
+      }
+      user.save(function(err) {
+        if (err) {
+          res.redirect("/editprofile");
+        } else {
+          res.redirect("/dashboard");
+        }
+      });
+    });
+  }
+);
+
 module.exports = router;

@@ -33,32 +33,24 @@
         <li>Yet another thing</li>
       </ul>
     </div>
+
     <div id="db-middle">
       <h2><b>Edit My Profile</b></h2>
       <div id="form-edit-profile">
         <form action="/editprofile" method="POST">
           <label>First name:</label>
-          <input id="edit-first-name" name="firstname" type="text" size="36">
+          <input id="edit-first-name" name="firstname" value={{user.firstname}} type="text" size="36">
           <br>
           <label>Last name:</label>
-          <input id="edit-last-name" name="lastname" type="text" size="36">
+          <input id="edit-last-name" name="lastname" value={{user.lastname}} type="text" size="36">
           <br>
           <label>A little bit about yourself:</label>
-          <textarea id="edit-description" type="text" name="description" cols="35" rows="4"></textarea>
+          <textarea id="edit-description" type="text" name="description" cols="35" rows="4">{{user.description}}</textarea>
           <br>
           <button input type="submit">Edit profile</button>
         </form>
       </div>
     </div>
-
-
-    {{!-- {{#each user}} <div class="mybooks">
-      <div class="book">
-        <div class="book cover"><img src="blablabla"></div>
-        <h2> {{ this.favorites }}</h2>
-      </div>
-    </div>
-    {{/each}} --}}
 
   </div>
 
