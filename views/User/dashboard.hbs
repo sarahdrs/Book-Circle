@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +11,8 @@
 </head>
 
 <body>
+
+
   <div class="dashboard-body">
     <div id="db-left-side">
       <div id="user-profile-view">
@@ -36,13 +37,25 @@
       <div id="db-middle-my-books">
         <h2>My Books</h2>
         <div id="favorite-books">
-          {{#each user.favorites}}
-          <div class="book">
-            <h4>{{this.title}}</h4>
-            {{!-- <img  src="{{result.thumbnail}}" alt={{result.title}}> --}}
-            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
-          </div>
-          {{/each}}
+          {{!-- {{#each user.favorites}} --}}
+          {{!-- <div class="book">
+              <p>{{result.title}}</p>
+              <img class="item2" src="{{result.thumbnail}}" alt={{result.title}}>
+
+            <img src="https://www.googleapis.com/books/v1/volumes/{{user.favorites[0]}}"> --}}
+
+
+            {{!-- <h4>{{this.title}}</h4>
+            <p>{{this.item}}</p> --}}
+
+
+
+            {{!-- <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg"> --}}
+          {{!-- </div>
+          {{/each}} --}}
+
+
+
           {{!-- <div class="book">
             <h4>Harry Potter</h4>
             <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
@@ -109,5 +122,6 @@
 
 
 </body>
+<script src="/javascripts/script.js"></script>
 
 </html>

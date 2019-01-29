@@ -1,6 +1,9 @@
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 <div class="search-container">
   <form class=" form-control-lg" action="/find-book" method="GET">
-    <label for="">Find a book</label><br>
+    <title for="">Find a book</title><br>
     <div class="input-group input-group-lg ">
       <div class="input-group-prepend input-group-lg">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
@@ -18,8 +21,6 @@
 <p id="results">Results:</p>
 <hr>
 
-
-
 {{#each results}}
 <div class="results-container">
   <div>
@@ -32,8 +33,20 @@
     <p class="result-categories">Categorie: {{this.categories}}</p>
   </div>
   <div>
-    <a class="book-details badge badge-secondary" href="/book-details/{{this.id}}">More Details</a>
+    <a class="book-details badge badge-secondary" href="/book-details/{{this.id}}">Details</a>
+    <form action="/book-details/{{this.id}}" method="post">
+      <button type="submit" class="btn btn-lg" id="save-book"><span class="glyphicon glyphicon-heart"></span></button>
+    </form>
+        <form action="/book-details/{{this.id}}" method="post">
+      <button type="submit" class="btn btn-lg" id="save-book"><span class="glyphicon glyphicon-bookmark"></span></button>
+    </form>
   </div>
 </div>
 <hr class="result-break">
 {{/each}}
+
+
+
+<script src="/javascripts/script.js"></script>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

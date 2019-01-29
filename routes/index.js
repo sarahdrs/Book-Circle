@@ -75,7 +75,7 @@ router.post("/book-details/:bookid",
     User.findOneAndUpdate({
         _id: userID
       }, {
-        $push: {
+        $addToSet: {
           favorites: bookID
         }
       }, {
@@ -108,6 +108,8 @@ router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
     title: "Hello, " + req.user.firstname + "!"
   });
 });
+
+
 
 
 // for testing profile editing
