@@ -23,7 +23,7 @@
 {{#each results}}
 <div class="results-container">
   <div>
-    <img src="{{this.thumbnail}}" alt={{this.title}}>
+    <a href="/book-details/{{this.id}}/{{this.title}}" ><img src="{{this.thumbnail}}" alt={{this.title}}> </a>
   </div>
   <div class="book-detail">
     <p class="result-title">{{this.title}}</p>
