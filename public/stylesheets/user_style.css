@@ -92,15 +92,30 @@ label {
 
 /* layout book-detail */
 
-.details-container{
-  display:inline-block;
-}
-.book-title{
-  width: 10rem;
-  height:20rem;
-}
 .details{
   display: flex;
   justify-content: center;
   font-size: 4rem;
+}
+.details-container{
+  display: grid;
+  margin-bottom: 2rem;
+  grid-gap: 0.1rem;
+  padding: 0.1rem;
+  grid-template-columns: 20rem 40rem;
+  grid-template-rows: 5rem 40rem 5rem;
+  margin-left: 23%;
+  width: 52rem;
+}
+.item1{
+  grid-column-end: span 2;
+  font-size: 2rem;
+  text-align: center;
+}
+.item2{
+  width: 10rem;
+  height:20rem;
+}
+.item4{
+  grid-column-end: span 2
 }
