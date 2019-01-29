@@ -3,7 +3,9 @@
 {{!-- <p class="details">Book Details</p> --}}
 
 <div class="details-container">
-  <div class="item1"><p>{{result.title}}</p></div>
+  <div class="item1">
+    <p>{{result.title}}</p>
+  </div>
   <div>
     <img class="item2" src="{{result.thumbnail}}" alt={{result.title}}>
   </div>
@@ -14,17 +16,16 @@
     <p>Description: <br> {{{result.description}}}</p>
   </div>
 
-<div class = "item4">
-<a class="badge badge-secondary" href="/find-book/?book={{result.title}}">Back to search results</a>
+  <div class="item4">
+    <a class="badge badge-secondary" href="/find-book/?book={{result.title}}">Back to search results</a>
 
-<form action="/book-details/{{result.id}}" method="post">
-<button type="submit" class="badge badge-secondary" id="save-book">Add To Favorites</button>
-</form>
+    <form action="/book-details/{{result.id}}/{{result.title}}" method="post">
+      <button type="submit" class="badge badge-secondary" id="save-book">Add To Favorites</button>
+    </form>
 
+  </div>
 </div>
 </div>
 
 <script src="/javascripts/script.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-

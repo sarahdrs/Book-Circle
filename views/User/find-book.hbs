@@ -33,7 +33,7 @@
     <p class="result-categories">Categorie: {{this.categories}}</p>
   </div>
   <div>
-    <a class="book-details badge badge-secondary" href="/book-details/{{this.id}}">Details</a>
+    <a class="book-details badge badge-secondary" href="/book-details/{{this.id}}/{{this.title}}">Details</a>
     <form action="/book-details/{{this.id}}" method="post">
       <button type="submit" class="btn btn-lg" id="save-book"><span class="glyphicon glyphicon-heart"></span></button>
     </form>

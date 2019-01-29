@@ -24,15 +24,17 @@ var options = {
 
 router.get("/find-book", (req, res, next) => {
   if (req.query.book) {
-    books.search(req.query.book, options, function (error, results) {
+    books.search(req.query.book, options, function(error, results) {
       let results3 = results;
       let message = "";
       console.log(results);
       if (results.length === 0) {
         message = "Try Harry Potter";
-        results3 = [{
-          title: ""
-        }];
+        results3 = [
+          {
+            title: ""
+          }
+        ];
       }
       if (!error) {
         res.render("User/find-book", {
@@ -51,11 +53,12 @@ router.get("/find-book", (req, res, next) => {
   }
 });
 
-router.get("/book-details/:bookid", (req, res, next) => {
+router.get("/book-details/:bookid/:booktitle", (req, res, next) => {
   let bookID = req.params.bookid;
+  let bookTitle = req.params.booktitle;
   let message = "";
   console.log("THE ID IS: " + bookID);
-  books.lookup(bookID, function (error, result) {
+  books.lookup(bookID, function(error, result) {
     console.log("THE BOOK IS " + result.title);
     res.render("User/book-details", {
       result,
@@ -65,38 +68,54 @@ router.get("/book-details/:bookid", (req, res, next) => {
   });
 });
 
-router.post("/book-details/:bookid",
+router.post(
+  "/book-details/:bookid/:booktitle/",
   ensureLogin.ensureLoggedIn("signin"),
   (req, res, next) => {
     const userID = req.user._id;
     console.log("Der User ist " + userID);
-    let bookID = req.params.bookid
+    let bookID = req.params.bookid;
+    let bookTitle = req.params.booktitle;
     console.log("Das ist die Book ID " + bookID);
-    User.findOneAndUpdate({
-        _id: userID
-      }, {
-        $addToSet: {
-          favorites: bookID
+    console.log("das ist der buchtitel" + bookTitle);
+    if (!req.user.favorites.includes(bookID)) {
+      User.findOneAndUpdate(
+        {
+          _id: userID
+        },
+        {
+          $addToSet: {
+            favorites: {
+              id: bookID,
+              title: bookTitle,
+              picture:
+                "https://books.google.de/books/content?id=" +
+                bookID +
+                "&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72rI1Euhs9deYuyLPQQUme5L1PqEW6740WJ81iemxo8UJaJsxp20lADyo6s6kc3xsSvYR96uVKrBNgDW58IEGYoyRDEOJUJmFKQjdHXK5bPXy1KjgQVmq8cFRZ_Ll_1hpCAbybR"
+            }
+          }
+        },
+        {
+          safe: true,
+          upsert: true
+        },
+        function(err, doc) {
+          if (err) {
+            console.log(err);
+          } else {
+            //do stuff
+          }
         }
-      }, {
-        safe: true,
-        upsert: true
-      },
-      function (err, doc) {
-        if (err) {
-          console.log(err);
-        } else {
-          //do stuff
-        }
-      }
-    );
-    books.lookup(bookID, function (error, result) {
-    res.render("User/book-details", {
-      result,
-      layout: "User/layout"
+      );
+    }
+    books.lookup(bookID, function(error, result) {
+      res.render("User/book-details", {
+        result,
+        layout: "User/layout"
+      });
     });
-  })
-  })
+  }
+);
 
 //dashboard
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
@@ -109,9 +128,12 @@ router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 7698017cdeb0bf668c6fcb7166c63e9429421318
 // for testing profile editing
 router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   res.render("User/edit-profile", {
@@ -144,7 +166,7 @@ router.post(
   "/editProfile",
   ensureLogin.ensureLoggedIn("signin"),
   (req, res) => {
-    User.findById(req.user._id, function (err, user) {
+    User.findById(req.user._id, function(err, user) {
       if (!user) {
         return res.redirect("/edit");
       } else {
@@ -156,7 +178,7 @@ router.post(
         user.lastname = lastname;
         user.description = description;
       }
-      user.save(function (err) {
+      user.save(function(err) {
         if (err) {
           res.redirect("/editprofile");
         } else {
