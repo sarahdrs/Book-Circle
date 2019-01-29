@@ -84,7 +84,7 @@ router.post(
           _id: userID
         },
         {
-          $push: {
+          $addToSet: {
             favorites: {
               id: bookID,
               title: bookTitle,
@@ -127,6 +127,9 @@ router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
     title: "Hello, " + req.user.firstname + "!"
   });
 });
+
+
+
 
 // for testing profile editing
 router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {

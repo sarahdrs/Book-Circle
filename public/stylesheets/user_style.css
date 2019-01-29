@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
+
 
 * {
   margin: 0;
@@ -30,7 +32,7 @@
   justify-content: center;
 }
 
-label {
+title {
   font-size: 5rem;
   padding: 5% 25%;
 
@@ -84,6 +86,31 @@ label {
   margin-top: 60%;
   font-size: 20px !important;
 }
+
+#save-book{
+  width: 100px;
+  height:100px;  
+}
+
+.glyphicon-heart{
+  color: red;
+  width:150% !important;
+  height:150% !important;
+}
+.glyphicon-heart:hover
+{
+  color: white;
+}
+.glyphicon-bookmark{
+  color: green;
+  width:150% !important;
+  height:150% !important;
+}
+.glyphicon:hover
+{
+  color: white;
+}
+
 
 .result-break {
   width: 52rem;
