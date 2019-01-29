@@ -1,16 +1,29 @@
+<title>Book Details</title>
+
 <p class="details">Book Details</p>
 
 <div class="details-container">
+  <div class="item1"><p>{{result.title}}</p></div>
   <div>
-    <img class="book-title" src="{{result.thumbnail}}" alt={{result.title}}>
+    <img class="item2" src="{{result.thumbnail}}" alt={{result.title}}>
   </div>
-  <p class= >{{result.title}}</p>
   <div>
-    <p>Written by: {{result.authors}}</p>
+    <p>Author: {{result.authors}}</p>
+    <p>Categorie: {{result.categories}}</p>
     <p>Published: {{result.publishedDate}}</p>
-    <p>Description: {{{result.description}}}</p>
+    <p>Description: <br> {{{result.description}}}</p>
   </div>
 
+<div class = "item4">
+<a class="badge badge-secondary" href="/find-book/?book={{result.title}}">Back to search results</a>
+
+<form action="/book-details/{{result.id}}" method="post">
+<button type="submit" class="badge badge-secondary" id="save-book">Add To Favorites</button>
+</form>
+
 </div>
-<a class="badge badge-secondary" href="/find-book/?book={{result.title}}">Back to search results</a><br>
-<a class="badge badge-secondary" id="save-book" action="/book-details" method="POST" href="">Add To Favorites</a>
+</div>
+
+ <script src="/javascripts/script.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+

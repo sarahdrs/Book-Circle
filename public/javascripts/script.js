@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
 
   console.log('IronGenerator JS imported successfully!');
@@ -11,4 +10,3 @@ $("#searchBtn").click(function(){
   $("#results").css('display','none');
   console.log("button pressed")
 });
-

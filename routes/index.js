@@ -24,13 +24,15 @@ var options = {
 
 router.get("/find-book", (req, res, next) => {
   if (req.query.book) {
-    books.search(req.query.book, options, function(error, results) {
+    books.search(req.query.book, options, function (error, results) {
       let results3 = results;
       let message = "";
       console.log(results);
       if (results.length === 0) {
         message = "Try Harry Potter";
-        results3 = [{ title: "" }];
+        results3 = [{
+          title: ""
+        }];
       }
       if (!error) {
         res.render("User/find-book", {
@@ -53,7 +55,7 @@ router.get("/book-details/:bookid", (req, res, next) => {
   let bookID = req.params.bookid;
   let message = "";
   console.log("THE ID IS: " + bookID);
-  books.lookup(bookID, function(error, result) {
+  books.lookup(bookID, function (error, result) {
     console.log("THE BOOK IS " + result.title);
     res.render("User/book-details", {
       result,
@@ -63,33 +65,38 @@ router.get("/book-details/:bookid", (req, res, next) => {
   });
 });
 
-router.post(
-  "/book-details",
+router.post("/book-details/:bookid",
   ensureLogin.ensureLoggedIn("signin"),
   (req, res, next) => {
-    const userID = req.user;
-    console.log("Der User ist" + userID);
-    document.getElementById("save-book").onclick = function() {
-      const bookID = result.bookid;
-      console.log("Das ist die Book ID" + bookID);
-      User.findByIdAndUpdate(
-        userID,
-        { $push: { favorites: bookID } },
-        { safe: true, upsert: true },
-        function(err, doc) {
-          if (err) {
-            console.log(err);
-          } else {
-            //do stuff
-          }
+    const userID = req.user._id;
+    console.log("Der User ist " + userID);
+    let bookID = req.params.bookid
+    console.log("Das ist die Book ID " + bookID);
+    User.findOneAndUpdate({
+        _id: userID
+      }, {
+        $push: {
+          favorites: bookID
         }
-      );
-    };
+      }, {
+        safe: true,
+        upsert: true
+      },
+      function (err, doc) {
+        if (err) {
+          console.log(err);
+        } else {
+          //do stuff
+        }
+      }
+    );
+    books.lookup(bookID, function (error, result) {
     res.render("User/book-details", {
+      result,
       layout: "User/layout"
     });
-  }
-);
+  })
+  })
 
 //dashboard
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
@@ -101,6 +108,7 @@ router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
     title: "Hello, " + req.user.firstname + "!"
   });
 });
+
 
 // for testing profile editing
 router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
@@ -134,7 +142,7 @@ router.post(
   "/editProfile",
   ensureLogin.ensureLoggedIn("signin"),
   (req, res) => {
-    User.findById(req.user._id, function(err, user) {
+    User.findById(req.user._id, function (err, user) {
       if (!user) {
         return res.redirect("/edit");
       } else {
@@ -146,7 +154,7 @@ router.post(
         user.lastname = lastname;
         user.description = description;
       }
-      user.save(function(err) {
+      user.save(function (err) {
         if (err) {
           res.redirect("/editprofile");
         } else {
