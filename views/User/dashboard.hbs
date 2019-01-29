@@ -17,7 +17,16 @@
       <div id="user-profile-view">
 
         <h4><b>{{user.firstname}}</b></h4>
+        <div id="profilepicture">
+          <img height="100px" src={{user.picture}}>
+        </div>
+
         <p>{{user.description}}</p>
+
+        {{#unless user.firstname}}
+        <p>Anonymous</p>
+        {{/unless}}
+
         {{#unless user.description}}
         <p>I'm {{user.firstname}} and I love books.</p>
         {{/unless}}
@@ -39,8 +48,8 @@
           {{#each user.favorites}}
           <div class="book">
             <h4>{{this.title}}</h4>
-            {{!-- <img  src="{{result.thumbnail}}" alt={{result.title}}> --}}
-            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+            {{!-- <img src="{{result.thumbnail}}" alt={{result.title}}> --}}
+            <img src="{{this.picture}}">
           </div>
           {{/each}}
           {{!-- <div class="book">
