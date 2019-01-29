@@ -9,6 +9,7 @@
 
 .dashboard-body {
   margin: 10px 25px 0px;
+  padding: 10px;
 }
 
 #findbook-button {
@@ -32,9 +33,18 @@
 }
 
 #db-left-side {
-  border: 1px solid black; /* nur für den Test der Layout-struktur, lösche ich später */
-  width: 20%;
+  /* border: 1px solid black; nur für den Test der Layout-struktur, lösche ich später */
+  width: 18%;
+  margin-right: 15px;
   float: left;
+  padding: 10px;
+  background-color: #96858f;
+  color: white;
+}
+
+#profilepicture {
+  /* border: 1px solid orange; */
+  margin: 10px 0px;
 }
 
 #db-left-side ul {
@@ -42,10 +52,12 @@
 }
 
 #db-middle {
-  border: 1px solid black; /* nur für den Test der Layout-struktur, lösche ich später */
+  /* border: 1px solid black; nur für den Test der Layout-struktur, lösche ich später */
   text-align: center;
   width: 60%;
   float: left;
+  height: 100%;
+  background-color: #d5d5d5;
 }
 
 #db-middle h2 {
@@ -74,15 +86,19 @@
 }
 
 #db-right-side {
-  border: 1px solid black; /* nur für den Test der Layout-struktur, lösche ich später */
+  /* border: 1px solid black; nur für den Test der Layout-struktur, lösche ich später */
   text-align: right;
-  width: 20%;
+  margin-left: 15px;
+  width: 18%;
   float: left;
+  padding: 10px;
+  background-color: #96858f;
+  color: white;
 }
 
 #favorite-books {
   display: flex;
-  height: 300px;
+  height: 100%;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
