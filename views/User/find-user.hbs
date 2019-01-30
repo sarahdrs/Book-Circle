@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+  crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<div class="search-container">
+  <form class=" form-control-lg" action="/find-user" method="GET">
+    <title for="">Find other users</title><br>
+    <div class="input-group input-group-lg ">
+      <div class="input-group-prepend input-group-lg">
+
+        <input class="form-control" id="form" type="text" name="user" placeholder="Sarah, Steph, Axel ...?">
+        <button id="searchBtn" class="btn btn-outline-success btn-lg" type="submit">SEARCH</button>
+      </div>
+    </div>
+  </form>
+</div>
+<p id="results">Results:</p>
+<hr>
+
+
+{{#each userResults}}
+
+<div class="results-container">
+
+  <div class="book-detail">
+    {{#if this.firstname}}
+    <p class="result-title">Name: {{this.firstname}} {{this.lastname}}</p>
+    <p class="result-title">About me: {{this.description}}</p>
+    <hr>
+    {{/if}}
+  </div>
+
+
+</div>
+
+{{/each}}
+
+
+
+
+<script src="/javascripts/script.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

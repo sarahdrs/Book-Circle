@@ -29,7 +29,7 @@ router.get("/find-book", (req, res, next) => {
       let message = "";
       console.log(results);
       if (results.length === 0) {
-        message = "Try Harry Potter";
+        message = "No books found? Try Harry Potter :-)";
         results3 = [
           {
             title: ""
@@ -117,6 +117,20 @@ router.post(
   }
 );
 
+router.get("/find-user", (req, res, next) => {
+  let searchName = req.query.user;
+  
+  console.log("NAMEEE:" + searchName);
+  User.find({ firstname: searchName }, function(
+    err, userResults) {
+      console.log("RESULTS" + userResults),
+    res.render("User/find-user", {
+      userResults,
+      layout: "User/layout"
+    });
+  });
+});
+
 //dashboard
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   console.log("REQ USER", req.user._id);
@@ -127,9 +141,6 @@ router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
     title: "Hello, " + req.user.firstname + "!"
   });
 });
-
-
-
 
 // for testing profile editing
 router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
