@@ -87,31 +87,26 @@ title {
   font-size: 20px !important;
 }
 
-#save-book{
-  width: 100px;
-  height:100px;  
+.button-action .btn{
+  margin:10%;
+  font-size:20px;
+  width:100px;
+  height: 50px;
 }
 
 .glyphicon-heart{
   color: red;
-  width:150% !important;
-  height:150% !important;
+  font-size:20px;
 }
-.glyphicon-heart:hover
-{
-  color: white;
-}
+
 .glyphicon-bookmark{
   color: green;
-  width:150% !important;
-  height:150% !important;
+  font-size:20px;
 }
-.glyphicon:hover
-{
-  color: white;
+.glyphicon:hover{
+  color:white;
+
 }
-
-
 .result-break {
   width: 52rem;
   margin-left: 25%;
@@ -130,7 +125,7 @@ title {
   grid-gap: 0.1rem;
   padding: 0.1rem;
   grid-template-columns: 20rem 40rem;
-  grid-template-rows: 5rem 40rem 5rem;
+  grid-template-rows: 5rem auto 5rem;
   margin-left: 23%;
   width: 52rem;
 }
@@ -144,5 +139,10 @@ title {
   height:20rem;
 }
 .item4{
-  grid-column-end: span 2
+  grid-column-start: 1;
+}
+.item4 .btn{
+margin: 2%;
+width:auto;
+height: 40px;
 }
