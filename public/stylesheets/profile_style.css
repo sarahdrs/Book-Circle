@@ -119,6 +119,7 @@ a {
   display: flex;
   width: 95%;
   margin: 0 auto;
+  margin-bottom: 20px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
