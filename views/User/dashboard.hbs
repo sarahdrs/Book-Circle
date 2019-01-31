@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,25 +34,33 @@
         {{/unless}}
       </div>
       <ul>
-        <li><a href="/editprofile">Edit Profile</a></li>
-        <li>Another thing</li>
-        <li>Yet another thing</li>
-        <li><a href="/logout">Logout</a></li>
+        <li><a href="/editprofile"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
+        <li><a>Another thing</a></li>
+        <li><a>Yet another thing</a></li>
+        <li><a href="/logout"><span class="glyphicon glyphicon-road"></span> Logout</a></li>
       </ul>
-    </div>
-    <div id="db-middle">
       <div id="middle-top">
         <a href="/find-book"><button id="findbook-button">Find Books</button></a>
         <a href="/find-user"><button id="findbook-button">Find Users</button></a>
       </div>
+      <div id="middle-top">
+        <a href="/find-book"><button id="findfriend-button">Find Friend</button></a>
+      </div>
+    </div>
+
+    <div id="db-middle">
       <div id="db-middle-my-books">
-        <h2>My Books</h2>
+
+        <h2><b>My Books</b></h2>
         <div id="favorite-books">
           {{#each user.favorites}}
-          <div class="book">
-            <h4>{{this.title}}</h4>
-            {{!-- <img src="{{result.thumbnail}}" alt={{result.title}}> --}}
-            <img src="{{this.picture}}">
+          <div class="card" style="width: 8rem;">
+            <img src="{{this.picture}}" class="card-img-top" alt="booktitle">
+            <div class="card-body">
+              <a href="/book-details/{{this.id}}/{{this.title}}">
+                <p class="card-text">{{this.title}}</p>
+              </a>
+            </div>
           </div>
           {{/each}}
           {{!-- <div class="book">
