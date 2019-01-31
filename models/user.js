@@ -9,7 +9,12 @@ const userSchema = new Schema({
   picture: String,
   description: String,
   favorites: [],
-  friends: [],
+  library:[],
+  friends: [
+    {
+      id: String
+    }
+  ]
 });
 
 const User = mongoose.model("User", userSchema);
