@@ -20,11 +20,15 @@
 {{#each userResults}}
 
 <div class="results-container">
-
-  <div class="book-detail">
+<div>
+    <a <img src=".." alt=".."> </a>
+  </div>
+  <div >
     {{#if this.firstname}}
-    <p class="result-title">Name: {{this.firstname}} {{this.lastname}}</p>
-    <p class="result-title">About me: {{this.description}}</p>
+    <p class="result-title">{{this.firstname}} {{this.lastname}}</p>
+    <a class="result-subtitle">About me:</a>
+    <br>
+    <a class="result-subtitle">{{this.description}}</a>
     <hr>
     {{/if}}
   </div>
