@@ -9,11 +9,7 @@ const userSchema = new Schema({
   picture: String,
   description: String,
   favorites: [],
-  friends: [
-    {
-      id: String
-    }
-  ]
+  friends: [],
 });
 
 const User = mongoose.model("User", userSchema);

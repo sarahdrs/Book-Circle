@@ -15,14 +15,19 @@
     <p>Published: {{result.publishedDate}}</p>
     <p>Description: <br> {{{result.description}}}</p>
   </div>
-
+  {{!-- Back to search results Button --}}
   <div class="item4">
-    <a class="badge badge-secondary" href="/find-book/?book={{result.title}}">Back to search results</a>
-
+    <a class="btn btn-outline-secondary" href="/find-book/?book={{result.title}}">Back to search results</a>
+    {{!-- Like Button --}}
     <form action="/book-details/{{result.id}}/{{result.title}}" method="post">
-      <button type="submit" class="badge badge-secondary" id="save-book">Add To Favorites</button>
+      <button type="submit" class="btn btn-outline-danger" id="save-book"><span class="glyphicon glyphicon-heart"></span>
+        Like</button>
     </form>
-
+    {{!-- Read Button --}}
+    <form action="/book-details/{{result.id}}/{{result.title}}" method="post">
+      <button type="submit" class="btn btn-outline-success" id="save-book"><span class="glyphicon glyphicon-bookmark"></span>
+        Read</button>
+    </form>
   </div>
 </div>
 </div>
