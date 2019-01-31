@@ -24,17 +24,18 @@ var options = {
 
 router.get("/find-book", (req, res, next) => {
   if (req.query.book) {
-    books.search(req.query.book, options, function(error, results) {
+    books.search(req.query.book, options, function (error, results) {
       let results3 = results;
       let message = "";
       console.log(results);
+      console.log('-----');
+      console.log(results[0].title);
+      console.log('-----');
       if (results.length === 0) {
         message = "No books found? Try Harry Potter :-)";
-        results3 = [
-          {
-            title: ""
-          }
-        ];
+        results3 = [{
+          title: ""
+        }];
       }
       if (!error) {
         res.render("User/find-book", {
@@ -58,7 +59,7 @@ router.get("/book-details/:bookid/:booktitle", (req, res, next) => {
   let bookTitle = req.params.booktitle;
   let message = "";
   console.log("THE ID IS: " + bookID);
-  books.lookup(bookID, function(error, result) {
+  books.lookup(bookID, function (error, result) {
     console.log("THE BOOK IS " + result.title);
     res.render("User/book-details", {
       result,
@@ -72,43 +73,24 @@ router.post(
   "/book-details/:bookid/:booktitle/",
   ensureLogin.ensureLoggedIn("signin"),
   (req, res, next) => {
-    const userID = req.user._id;
+    const userID = req.user;
     console.log("Der User ist " + userID);
     let bookID = req.params.bookid;
     let bookTitle = req.params.booktitle;
+
     console.log("Das ist die Book ID " + bookID);
     console.log("das ist der buchtitel" + bookTitle);
-    if (!req.user.favorites.includes(bookID)) {
-      User.findOneAndUpdate(
-        {
-          _id: userID
-        },
-        {
-          $addToSet: {
-            favorites: {
-              id: bookID,
-              title: bookTitle,
-              picture:
-                "https://books.google.de/books/content?id=" +
-                bookID +
-                "&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72rI1Euhs9deYuyLPQQUme5L1PqEW6740WJ81iemxo8UJaJsxp20lADyo6s6kc3xsSvYR96uVKrBNgDW58IEGYoyRDEOJUJmFKQjdHXK5bPXy1KjgQVmq8cFRZ_Ll_1hpCAbybR"
-            }
-          }
-        },
-        {
-          safe: true,
-          upsert: true
-        },
-        function(err, doc) {
-          if (err) {
-            console.log(err);
-          } else {
-            //do stuff
-          }
-        }
-      );
+
+
+    if (req.query.favorite === '1') {
+      req.user.updateFavorites(bookID, bookTitle)
+    } 
+    
+    else if (req.query.read === '1') {
+      req.user.updateLibrary(bookID, bookTitle)
     }
-    books.lookup(bookID, function(error, result) {
+
+    books.lookup(bookID, function (error, result) {
       res.render("User/book-details", {
         result,
         layout: "User/layout"
@@ -119,15 +101,17 @@ router.post(
 
 router.get("/find-user", (req, res, next) => {
   let searchName = req.query.user;
-  
+
   console.log("NAMEEE:" + searchName);
-  User.find({ firstname: searchName }, function(
+  User.find({
+    firstname: searchName
+  }, function (
     err, userResults) {
-      console.log("RESULTS" + userResults),
-    res.render("User/find-user", {
-      userResults,
-      layout: "User/layout"
-    });
+    console.log("RESULTS" + userResults),
+      res.render("User/find-user", {
+        userResults,
+        layout: "User/layout"
+      });
   });
 });
 
@@ -174,7 +158,7 @@ router.post(
   "/editProfile",
   ensureLogin.ensureLoggedIn("signin"),
   (req, res) => {
-    User.findById(req.user._id, function(err, user) {
+    User.findById(req.user._id, function (err, user) {
       if (!user) {
         return res.redirect("/edit");
       } else {
@@ -186,7 +170,7 @@ router.post(
         user.lastname = lastname;
         user.description = description;
       }
-      user.save(function(err) {
+      user.save(function (err) {
         if (err) {
           res.redirect("/editprofile");
         } else {
