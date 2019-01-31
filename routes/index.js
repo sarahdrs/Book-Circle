@@ -128,9 +128,6 @@ router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   });
 });
 
-
-
-
 // for testing profile editing
 router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   res.render("User/edit-profile", {
