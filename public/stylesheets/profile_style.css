@@ -12,25 +12,6 @@
   padding: 10px;
 }
 
-#findbook-button {
-  background: #3c3851;
-  border: 1px solid;
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 20px;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: 0.3s ease background;
-  width: 30%;
-}
-
-#findbook-button:hover {
-  background: #fff;
-  color: #3c3851;
-  transition: 0.3s ease background;
-}
 
 #db-left-side {
   /* border: 1px solid black; nur für den Test der Layout-struktur, lösche ich später */
@@ -57,13 +38,81 @@
   width: 60%;
   float: left;
   height: 100%;
-  background-color: #d5d5d5;
 }
 
-#db-middle h2 {
+#db-middle h3 {
+  font-size: 1.2rem;
+}
+#db-middle h4 {
+  font-size: 0.8rem;
+}
+
+#middle-top {
+  background-color: #d5d5d5;
+  height: 90px;
+}
+
+#findbook-button {
+
+  background: #3c3851;
+  border: 1px solid;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: 0.3s ease background;
+  width: 30%;
+  margin-top:4%;
+
+
+}
+
+#findbook-button:hover {
+  background: #fff;
+  color: #3c3851;
+  transition: 0.3s ease background;
+
+}
+
+.Reading-List {
+  background-color: #d5d5d5;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding: 10px;
+  font-size: 15px;
+
+}
+.glyphicon-heart{
+ color: #D11AA8    ;
+}
+.glyphicon-bookmark{
+  color: #134716   ;
+ }
+
+.Library-List {
+  background-color: #d5d5d5;
   padding: 10px;
 }
 
+.books-list {
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.book img {
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+/* Edit Profile */
 #form-edit-profile {
   width: 70%;
   text-align: right;
@@ -96,23 +145,10 @@
   color: white;
 }
 
-#favorite-books {
-  display: flex;
-  height: 100%;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  align-content: flex-start;
-}
-
-.book img {
-  height: 150px;
-  margin-bottom: 20px;
-}
 
 #friends-activity {
-  border: 1px solid black; /* nur für den Test der Layout-struktur, lösche ich später */
+  border: 1px solid black;
+  /* nur für den Test der Layout-struktur, lösche ich später */
   width: 100%;
   height: 100%;
   display: flex;

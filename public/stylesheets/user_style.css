@@ -10,16 +10,20 @@
 
 /* Navigation Bar */
 .navbar {
-  border-bottom: 2px solid #3C3851;
+  /* border-bottom: 2px solid #3C3851; */
+  background-color:#3c3851 !important;
+  color: white !important;
+
 }
 
 .navbar-brand {
   font-size: 40px !important;
-  color: #3C3851 !important;
+  color:white;
+  /* color: #3C3851 !important; */
 }
 
 .navbar a {
-  color: grey;
+  color: white !important;
 }
 
 .navbar button {
@@ -95,12 +99,12 @@ title {
 }
 
 .glyphicon-heart{
-  color: red;
+  color: #D11AA8    ;
   font-size:20px;
 }
 
 .glyphicon-bookmark{
-  color: green;
+  color: #134716 ;
   font-size:20px;
 }
 .glyphicon:hover{

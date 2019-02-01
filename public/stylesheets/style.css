@@ -9,9 +9,13 @@
 }
 
 /* Naviagtion Bar */
+
+.navbar{
+  background-color:#3c3851 !important
+}
 .navbar-brand {
   font-size: 40px !important;
-  color: #3c3851 !important;
+  color: white !important;
 }
 
 .nav-item {
@@ -19,12 +23,12 @@
 }
 
 .navbar a {
-  color: grey;
+  color: white;
 }
 
 .nav > li > a:hover {
   background-color: transparent !important;
-  color: #3c3851 !important;
+  color: grey !important;
 }
 
 /* Header with background image */

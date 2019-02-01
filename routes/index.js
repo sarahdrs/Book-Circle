@@ -12,25 +12,33 @@ router.get("/", (req, res, next) => {
 
 //find-book
 
-var options = {
-  key: "",
-  field: "title",
-  offset: 0,
-  limit: 15,
-  type: "books",
-  order: "relevance",
-  lang: false
-};
+// var options = {
+//   key: "",
+//   field: "title",
+//   offset: 0,
+//   limit: 15,
+//   type: "books",
+//   order: "relevance",
+//   lang: false
+// };
 
 router.get("/find-book", (req, res, next) => {
+  let searchFilter= req.body.filter
+  console.log(searchFilter)
+  let options = {
+    key: "",
+    field: searchFilter,
+    offset: 0,
+    limit: 15,
+    type: "books",
+    order: "relevance",
+    lang: false
+  };
   if (req.query.book) {
     books.search(req.query.book, options, function (error, results) {
       let results3 = results;
       let message = "";
-      console.log(results);
-      console.log('-----');
-      console.log(results[0].title);
-      console.log('-----');
+      
       if (results.length === 0) {
         message = "No books found? Try Harry Potter :-)";
         results3 = [{

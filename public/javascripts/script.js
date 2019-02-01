@@ -4,6 +4,10 @@
 // crossorigin = "anonymous" >
 
 document.addEventListener('DOMContentLoaded', () => {
+  $("#searchBtn").click(function () {
+    $("#results").css('display', 'none');
+    console.log("button pressed")
+  });
 
   console.log('IronGenerator JS imported successfully!');
 
@@ -11,7 +15,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 //function to toggle "Results:" in /find-book
-$("#searchBtn").click(function () {
-  $("#results").css('display', 'none');
-  console.log("button pressed")
-});

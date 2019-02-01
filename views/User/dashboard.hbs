@@ -1,14 +1,17 @@
+{{!--
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> --}}
   <link rel="stylesheet" href="/stylesheets/profile_style.css" />
+  {{!--
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-</head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"> --}}
+  {{!-- </head> --}}
 
 <body>
 
@@ -39,60 +42,41 @@
         <li><a href="/logout">Logout</a></li>
       </ul>
     </div>
+
     <div id="db-middle">
       <div id="middle-top">
         <a href="/find-book"><button id="findbook-button">Find Books</button></a>
         <a href="/find-user"><button id="findbook-button">Find Users</button></a>
       </div>
-      <div id="db-middle-my-books">
-        <h2>My Books</h2>
-        <div id="favorite-books">
+
+      <div class="Reading-List">
+        <span class="glyphicon glyphicon-heart"><h2>Reading List </h2></span>
+        <h3>Books that I plan to read</h3>
+        <div class="books-list">
           {{#each user.favorites}}
           <div class="book">
-            <h4>{{this.title}}</h4>
-            {{!-- <img src="{{result.thumbnail}}" alt={{result.title}}> --}}
             <img src="{{this.picture}}">
+            <h4>{{this.title}}</h4>
           </div>
           {{/each}}
-          {{!-- <div class="book">
-            <h4>Harry Potter</h4>
-            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
-          </div>
-          <div class="book">
-            <h4>Harry Potter</h4>
-            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
-          </div>
-          <div class="book">
-            <h4>Harry Potter</h4>
-            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
-          </div>
-          <div class="book">
-            <h4>Harry Potter</h4>
-            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
-          </div>
-          <div class="book">
-            <h4>Harry Potter</h4>
-            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
-          </div>
-          <div class="book">
-            <h4>Harry Potter</h4>
-            <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
-          </div> --}}
         </div>
-
-
-        {{!-- {{#each user}}
-        <div class="mybooks">
-          <div class="book">
-            <div class="book cover"><img src="blablabla"></div>
-            <h2> {{ this.favorites }}</h2>
-          </div>
-        </div>
-        {{/each}} --}}
-
       </div>
+      <div>
+        <div class="Library-List">
 
+          <span class="glyphicon glyphicon-bookmark"><h2>My Library </h2></span>
+          <h3>Books that I have read</h3>
 
+        <div class="books-list">
+            {{#each user.library}}
+            <div class="book">
+              <h4>{{this.title}}</h4>
+              <img src="{{this.picture}}">
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="db-right-side">
@@ -120,6 +104,7 @@
 
 
 </body>
+{{!--
 <script src="/javascripts/script.js"></script>
 
-</html>
+</html> --}}
