@@ -21,10 +21,20 @@
 
         <h4><b>{{user.firstname}}</b></h4>
         <div id="profilepicture">
-          <img height="100px" src={{user.picture}}>
+          <img height="100px" src="{{user.picture}}" onerror=" this.src='https://img.bfmtv.com/c/1000/600/988/7452a0ef3e5805e978ac96cb6edb1.jpeg'">
         </div>
 
+        {{!-- I was trying to show a default picture if a user doesn't have one. this doesn't work yet though! --}}
+        {{!-- {{#unless user.picture}}
+        <script>$("
+            #profilepicture").hide()</script>
+        <div id="profilepicturedefault">
+          <img src="https://img.bfmtv.com/c/1000/600/988/7452a0ef3e5805e978ac96cb6edb1.jpeg">
+        </div>
+        {{/unless}} --}}
+
         <p>{{user.description}}</p>
+
 
         {{#unless user.firstname}}
         <p>Anonymous</p>
@@ -33,13 +43,14 @@
         {{#unless user.description}}
         <p>I'm {{user.firstname}} and I love books.</p>
         {{/unless}}
+
+        <ul>
+          <li><a href="/editprofile"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
+          <li><a href="/find-book"><span class="glyphicon glyphicon-book"></span>Find Books</a></li>
+          <li><a href="/find-user"><span class="glyphicon glyphicon-plus"></span>Find Users</a></li>
+          <li><a href="/logout"><span class="glyphicon glyphicon-road"></span> Logout</a></li>
+        </ul>
       </div>
-      <ul>
-        <li><a href="/editprofile"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
-        <li><a href="/find-book"><span class="glyphicon glyphicon-plus"></span>Find Books</a></li>
-        <li><a href="/find-user"><span class="glyphicon glyphicon-plus"></span>Find Users</a></li>
-        <li><a href="/logout"><span class="glyphicon glyphicon-road"></span> Logout</a></li>
-      </ul>
     </div>
 
     <div id="db-middle">
@@ -60,7 +71,7 @@
           {{#each user.favorites}}
           <div class="book">
             <img src="{{this.picture}}">
-            <h4><b><a href="/book-details/{{this.title}}">{{this.title}}</a></b></h4>
+            <h4><b><a href="/book-details/{{this.id}}/{{this.title}}">{{this.title}}</a></b></h4>
           </div>
           {{/each}}
         </div>
@@ -91,10 +102,13 @@
     <div id="db-right-side">
       <h2>What are your friends reading?</h2>
       <div id="friends-activity">
+
+        {{#each user.friends}}
         <div class="friend">
-          <h4>Axel is reading Harry Potter</h4>
+          <h4>{{this.firstname}}</h4>
           <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
         </div>
+        {{/each}}
         <div class="friend">
           <h4>Sarah is reading Harry Potter</h4>
           <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">

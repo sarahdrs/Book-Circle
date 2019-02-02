@@ -19,7 +19,7 @@
       <div id="user-profile-view">
         <h4><b>{{user.firstname}}</b></h4>
         <div id="profilepicture">
-          <img height="100px" src={{user.picture}}>
+          <img height="100px" src="{{user.picture}}" onerror=" this.src='https://img.bfmtv.com/c/1000/600/988/7452a0ef3e5805e978ac96cb6edb1.jpeg'">
         </div>
         <p>{{user.description}}</p>
 
@@ -31,9 +31,10 @@
         {{/unless}}
       </div>
       <ul>
-        <li>Edit Profile</li>
-        <li>Another thing</li>
-        <li>Yet another thing</li>
+        <li><a href="/editprofile"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
+        <li><a href="/find-book"><span class="glyphicon glyphicon-book"></span>Find Books</a></li>
+        <li><a href="/find-user"><span class="glyphicon glyphicon-plus"></span>Find Users</a></li>
+        <li><a href="/logout"><span class="glyphicon glyphicon-road"></span> Logout</a></li>
       </ul>
     </div>
 
@@ -42,16 +43,16 @@
       <div id="form-edit-profile">
         <form action="/editprofile" method="POST" enctype="multipart/form-data">
           <label>First name:</label>
-          <input id="edit-first-name" name="firstname" value={{user.firstname}} type="text" size="36">
+          <input id="edit-first-name" name="firstname" value={{user.firstname}} "anonymous" type="text" size="36">
           <br>
           <label>Last name:</label>
-          <input id="edit-last-name" name="lastname" value={{user.lastname}} type="text" size="36">
+          <input id="edit-last-name" name="lastname" value={{user.lastname}} "anonymous" type="text" size="36">
           <br>
           <label>A little bit about yourself:</label>
           <textarea id="edit-description" type="text" name="description" cols="35" rows="4">{{user.description}}</textarea>
           <br>
           <label for="profilepicture">Upload a Picture</label><br>
-          <input type="file" id="profilepicture" name="profilepicture">
+          <input type="file" id="profilepicture" name="profilepicture" required>
           <button input type="submit">Edit profile</button>
         </form>
       </div>

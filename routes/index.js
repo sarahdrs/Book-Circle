@@ -24,8 +24,8 @@ router.get("/", (req, res, next) => {
 // };
 
 router.get("/find-book", (req, res, next) => {
-  let searchFilter= req.body.filter;
-  console.log("SEARCH FILTER: " + searchFilter)
+  let searchFilter = req.query.filter;
+  console.log("SEARCH FILTER: " + searchFilter);
   let options = {
     key: "",
     field: searchFilter,
@@ -52,7 +52,9 @@ router.get("/find-book", (req, res, next) => {
         res.render("User/find-book", {
           results,
           message,
-          layout: "User/layout"
+          layout: "User/layout",
+          title: "Find books",
+          left: "Dashboard"
         });
       } else {
         console.log(error);
@@ -60,7 +62,9 @@ router.get("/find-book", (req, res, next) => {
     });
   } else {
     res.render("User/find-book", {
-      layout: "User/layout"
+      layout: "User/layout",
+      title: "Find books",
+      left: "Dashboard"
     });
   }
 });
@@ -75,7 +79,8 @@ router.get("/book-details/:bookid/:booktitle", (req, res, next) => {
     res.render("User/book-details", {
       result,
       message,
-      layout: "User/layout"
+      layout: "User/layout",
+      left: "Your Dashboard"
     });
   });
 });
@@ -101,7 +106,8 @@ router.post(
     books.lookup(bookID, function(error, result) {
       res.render("User/book-details", {
         result,
-        layout: "User/layout"
+        layout: "User/layout",
+        left: "Dashboard"
       });
     });
   }
@@ -115,26 +121,22 @@ router.get("/find-user", (req, res, next) => {
     function(err, userResults) {
       res.render("User/find-user", {
         userResults,
-        layout: "User/layout"
+        layout: "User/layout",
+        title: "Find friends",
+        left: "Dashboard"
       });
     }
   );
 });
 
-router.get("/user-details", (req, res, next) => {
-  let bookID = req.params.bookid;
-
-
-// router.post("/find-user/:id", (req, res) => {
-//   let followeeID = req.query.id;
-//   console.log("FOLOWEE ID: " + followeeID);
-//   res.render("User/find-user")
-
-// })
+router.get("/user-details/:userid", (req, res, next) => {
+  res.send("lalalalalalala");
+});
 
 //dashboard
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   console.log("REQ USER", req.user._id);
+  console.log(req.user.friends);
 
   res.render("User/dashboard", {
     user: req.user,
@@ -148,7 +150,8 @@ router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   res.render("User/edit-profile", {
     user: req.user,
     layout: "User/layout",
-    title: "Hi," + req.user.firstname
+    title: "Hi," + req.user.firstname,
+    left: "Dashboard"
   });
 });
 

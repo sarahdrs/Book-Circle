@@ -1,24 +1,22 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300");
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
-
 
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
 }
 
 /* Navigation Bar */
 .navbar {
   /* border-bottom: 2px solid #3C3851; */
-  background-color:#3c3851 !important;
+  background-color: #3c3851 !important;
   color: white !important;
-
 }
 
 .navbar-brand {
   font-size: 40px !important;
-  color:white;
+  color: white;
   /* color: #3C3851 !important; */
 }
 
@@ -39,7 +37,6 @@
 title {
   font-size: 5rem;
   padding: 5% 25%;
-
 }
 
 #form {
@@ -64,8 +61,7 @@ title {
   width: 52rem;
 }
 
-.results-container>div {
-
+.results-container > div {
   text-align: center;
 }
 
@@ -91,30 +87,29 @@ title {
   font-size: 20px !important;
 }
 
-.button-action .btn{
-  margin:10%;
-  font-size:20px;
-  width:100px;
+.button-action .btn {
+  margin: 10%;
+  font-size: 20px;
+  width: 100px;
   height: 50px;
 }
 
-.glyphicon-heart{
-  color: #D11AA8    ;
-  font-size:20px;
+.glyphicon-heart {
+  color: #d11aa8;
+  font-size: 20px;
 }
 
-.glyphicon-star{
-  color: rgb(187, 175, 6)    ;
-  font-size:20px;
+.glyphicon-star {
+  color: rgb(187, 175, 6);
+  font-size: 20px;
 }
 
-.glyphicon-bookmark{
-  color: #134716 ;
-  font-size:20px;
+.glyphicon-bookmark {
+  color: #134716;
+  font-size: 20px;
 }
-.glyphicon:hover{
-  color:white;
-
+.glyphicon:hover {
+  color: white;
 }
 .result-break {
   width: 52rem;
@@ -123,12 +118,12 @@ title {
 
 /* layout book-detail */
 
-.details{
+.details {
   display: flex;
   justify-content: center;
   font-size: 4rem;
 }
-.details-container{
+.details-container {
   display: grid;
   margin-bottom: 2rem;
   grid-gap: 0.1rem;
@@ -138,20 +133,20 @@ title {
   margin-left: 23%;
   width: 52rem;
 }
-.item1{
+.item1 {
   grid-column-end: span 2;
   font-size: 2rem;
   text-align: center;
 }
-.item2{
+.item2 {
   width: 10rem;
-  height:20rem;
+  /* height: 20rem; */
 }
-.item4{
+.item4 {
   grid-column-start: 1;
 }
-.item4 .btn{
-margin: 2%;
-width:auto;
-height: 40px;
+.item4 .btn {
+  margin: 2%;
+  width: auto;
+  height: 40px;
 }
