@@ -109,19 +109,19 @@ router.post(
 
 router.get("/find-user", (req, res, next) => {
   let searchName = req.query.user;
-
-  console.log("NAMEEE:" + searchName);
-  User.find({
-    firstname: searchName
-  }, function (
-    err, userResults) {
-    console.log("RESULTS" + userResults),
-      res.render("User/find-user", {
-        userResults,
-        layout: "User/layout"
-      });
-  });
+  let regexSearch = { $regex: new RegExp(`.*${searchName}.*`), $options: "i" };
+  User.find(
+    { $or: [{ firstname: regexSearch }, { lastname: regexSearch }] },
+    function(err, userResults) {
+        res.render("User/find-user", {
+          userResults,
+          layout: "User/layout"
+        });
+    }
+  );
 });
+
+
 
 //dashboard
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {

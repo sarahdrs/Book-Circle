@@ -67,7 +67,7 @@
 	</header>
 
 	<div>
-		<form id="form" action="/" method="POST">
+		<form id="form" action="/" method="POST" enctype="multipart/form-data">
 
 			<p>Become A Member</p>
 			<label for="user-email-address">Your email address</label><br>
@@ -82,7 +82,11 @@
 			<label for="lastname">Last Name</label><br>
 			<input type="text" id="lastname" name="lastname" placeholder="Enter lastname" class="form-control">
 
-			<button input type="submit">Create Account</button>
+			<label for="profilepicture">Upload a Picture</label><br>
+			<input type="file" id="profilepicture" name="profilepicture" class="form-control">
+
+			<button input type="submit" value="save">Create Account</button>
+
 			{{#if message}}
 			<div>{{ message }}</div>
 			{{/if}}
