@@ -24,7 +24,7 @@ const jquery = require("jquery");
 
 mongoose
   .connect(
-    "mongodb://localhost/book-circle",
+    process.env.MONGODB_URI,
     { useNewUrlParser: true }
   )
   .then(x => {
