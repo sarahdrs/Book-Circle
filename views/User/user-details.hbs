@@ -1,0 +1,36 @@
+<title>User Details</title>
+
+
+
+<div class="details-container">
+  <div class="item1">
+    <p>{{result.title}}</p>
+  </div>
+  <div>
+    <img class="item2" src="{{result.thumbnail}}" alt={{result.title}}>
+  </div>
+  <div>
+    <p>Author: {{result.authors}}</p>
+    <p>Categorie: {{result.categories}}</p>
+    <p>Published: {{result.publishedDate}}</p>
+    <p>Description: <br> {{{result.description}}}</p>
+  </div>
+  {{!-- Back to search results Button --}}
+  <div class="item4">
+    <a class="btn btn-outline-secondary" href="/find-book/?book={{result.title}}">Back to search results</a>
+    {{!-- Like Button --}}
+    <form action="/book-details/{{result.id}}/{{result.title}}?favorite=1" method="post">
+      <button type="submit" class="btn btn-outline" id="save-book"><span class="glyphicon glyphicon-heart"></span>
+        Like</button>
+    </form>
+    {{!-- Read Button --}}
+    <form action="/book-details/{{result.id}}/{{result.title}}?read=1" method="post">
+      <button type="submit" class="btn btn-outline" id="save-book"><span class="glyphicon glyphicon-bookmark"></span>
+        Read</button>
+    </form>
+  </div>
+</div>
+</div>
+
+<script src="/javascripts/script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
