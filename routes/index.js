@@ -130,9 +130,6 @@ router.get("/find-user", (req, res, next) => {
 });
 
 router.get("/user-details/:userid", (req, res, next) => {
-<<<<<<< HEAD
-  res.send("lalalalalalala");
-=======
   let foloweeID = req.params.userid;
   User.findById(foloweeID, function(err, foloweeResults) {
     res.render("User/user-details", {
@@ -156,7 +153,6 @@ router.post("/user-details/:friendid", (req, res, next) => {
   }) 
 
 
->>>>>>> user-path-continue
 });
 
 //dashboard
