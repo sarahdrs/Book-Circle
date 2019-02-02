@@ -1,17 +1,16 @@
-{{!--
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge"> --}}
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/stylesheets/profile_style.css" />
-  {{!--
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"> --}}
-  {{!-- </head> --}}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+</head>
 
 <body>
 
@@ -37,8 +36,8 @@
       </div>
       <ul>
         <li><a href="/editprofile"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
-        <li><a>Another thing</a></li>
-        <li><a>Yet another thing</a></li>
+        <li><a href="/find-book"><span class="glyphicon glyphicon-plus"></span>Find Books</a></li>
+        <li><a href="/find-user"><span class="glyphicon glyphicon-plus"></span>Find Users</a></li>
         <li><a href="/logout"><span class="glyphicon glyphicon-road"></span> Logout</a></li>
       </ul>
     </div>
@@ -50,24 +49,34 @@
       </div>
 
       <div class="Reading-List">
-        <span class="glyphicon glyphicon-heart"><h2>Reading List </h2></span>
-        <h3>Books that I plan to read</h3>
+        <span class="glyphicon glyphicon-heart">
+          <h2>Reading List </h2>
+        </span>
+        <div class="heading">
+          <h3><b>Books that I plan to read</b></h3>
+        </div>
+
         <div class="books-list">
           {{#each user.favorites}}
           <div class="book">
             <img src="{{this.picture}}">
-            <h4>{{this.title}}</h4>
+            <h4><b><a href="/book-details/{{this.title}}">{{this.title}}</a></b></h4>
           </div>
           {{/each}}
         </div>
       </div>
+
+
       <div>
         <div class="Library-List">
 
-          <span class="glyphicon glyphicon-bookmark"><h2>My Library </h2></span>
-          <h3>Books that I have read</h3>
-
-        <div class="books-list">
+          <span class="glyphicon glyphicon-bookmark">
+            <h2>My Library </h2>
+          </span>
+          <div class="heading">
+            <h3><b>Books that I have read</b></h3>
+          </div>
+          <div class="books-list">
             {{#each user.library}}
             <div class="book">
               <h4>{{this.title}}</h4>
@@ -104,7 +113,7 @@
 
 
 </body>
-{{!--
+
 <script src="/javascripts/script.js"></script>
 
-</html> --}}
+</html>

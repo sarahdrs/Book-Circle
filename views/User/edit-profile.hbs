@@ -18,6 +18,9 @@
     <div id="db-left-side">
       <div id="user-profile-view">
         <h4><b>{{user.firstname}}</b></h4>
+        <div id="profilepicture">
+          <img height="100px" src={{user.picture}}>
+        </div>
         <p>{{user.description}}</p>
 
         {{#unless user.firstname}}
@@ -37,7 +40,7 @@
     <div id="db-middle">
       <h2><b>Edit My Profile</b></h2>
       <div id="form-edit-profile">
-        <form action="/editprofile" method="POST">
+        <form action="/editprofile" method="POST" enctype="multipart/form-data">
           <label>First name:</label>
           <input id="edit-first-name" name="firstname" value={{user.firstname}} type="text" size="36">
           <br>
@@ -47,6 +50,8 @@
           <label>A little bit about yourself:</label>
           <textarea id="edit-description" type="text" name="description" cols="35" rows="4">{{user.description}}</textarea>
           <br>
+          <label for="profilepicture">Upload a Picture</label><br>
+          <input type="file" id="profilepicture" name="profilepicture">
           <button input type="submit">Edit profile</button>
         </form>
       </div>

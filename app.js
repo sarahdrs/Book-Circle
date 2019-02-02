@@ -16,17 +16,13 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
-const books = require('google-books-search');
+const books = require("google-books-search");
 const jquery = require("jquery");
 // const popper=require('popper.js');
 // const bootstrap = require('bootstrap');
 
-
 mongoose
-  .connect(
-    process.env.MONGODB_URI,
-    { useNewUrlParser: true }
-  )
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`

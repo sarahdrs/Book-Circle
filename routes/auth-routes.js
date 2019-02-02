@@ -24,8 +24,6 @@ authRoutes.post("/", uploadCloud.single("profilepicture"), (req, res, next) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   const picture = req.file.url;
-  // const picture = `/uploads/${req.file.filename}`;
-  console.log(req.file.filename);
 
   if (email === "" || password === "") {
     res.render("index", {

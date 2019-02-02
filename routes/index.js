@@ -4,6 +4,7 @@ const User = require("../models/user");
 const books = require("google-books-search");
 const ensureLogin = require("connect-ensure-login");
 const axios = require("axios");
+const uploadCloud = require("../config/cloudinary.js");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -23,8 +24,8 @@ router.get("/", (req, res, next) => {
 // };
 
 router.get("/find-book", (req, res, next) => {
-  let searchFilter= req.body.filter
-  console.log(searchFilter)
+  let searchFilter = req.query.filter;
+  console.log(searchFilter);
   let options = {
     key: "",
     field: searchFilter,
@@ -35,15 +36,17 @@ router.get("/find-book", (req, res, next) => {
     lang: false
   };
   if (req.query.book) {
-    books.search(req.query.book, options, function (error, results) {
+    books.search(req.query.book, options, function(error, results) {
       let results3 = results;
       let message = "";
-      
+
       if (results.length === 0) {
         message = "No books found? Try Harry Potter :-)";
-        results3 = [{
-          title: ""
-        }];
+        results3 = [
+          {
+            title: ""
+          }
+        ];
       }
       if (!error) {
         res.render("User/find-book", {
@@ -67,7 +70,7 @@ router.get("/book-details/:bookid/:booktitle", (req, res, next) => {
   let bookTitle = req.params.booktitle;
   let message = "";
   console.log("THE ID IS: " + bookID);
-  books.lookup(bookID, function (error, result) {
+  books.lookup(bookID, function(error, result) {
     console.log("THE BOOK IS " + result.title);
     res.render("User/book-details", {
       result,
@@ -89,16 +92,13 @@ router.post(
     console.log("Das ist die Book ID " + bookID);
     console.log("das ist der buchtitel" + bookTitle);
 
-
-    if (req.query.favorite === '1') {
-      req.user.updateFavorites(bookID, bookTitle)
-    } 
-    
-    else if (req.query.read === '1') {
-      req.user.updateLibrary(bookID, bookTitle)
+    if (req.query.favorite === "1") {
+      req.user.updateFavorites(bookID, bookTitle);
+    } else if (req.query.read === "1") {
+      req.user.updateLibrary(bookID, bookTitle);
     }
 
-    books.lookup(bookID, function (error, result) {
+    books.lookup(bookID, function(error, result) {
       res.render("User/book-details", {
         result,
         layout: "User/layout"
@@ -113,15 +113,13 @@ router.get("/find-user", (req, res, next) => {
   User.find(
     { $or: [{ firstname: regexSearch }, { lastname: regexSearch }] },
     function(err, userResults) {
-        res.render("User/find-user", {
-          userResults,
-          layout: "User/layout"
-        });
+      res.render("User/find-user", {
+        userResults,
+        layout: "User/layout"
+      });
     }
   );
 });
-
-
 
 //dashboard
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
@@ -143,42 +141,26 @@ router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   });
 });
 
-// router.post(
-//   "/editprofile",
-//   ensureLogin.ensureLoggedIn("signin"),
-//   (req, res) => {
-//     User.findOne({ name: req.user.firstname }, function(err, User) {
-//       (User.firstname = req.body.firstname),
-//         (User.lastname = req.body.lastname),
-//         (User.description = req.body.description);
-//     }).then(User.save());
-//     console.log(req.user).then(() => {
-//       res.render("User/edit-profile", {
-//         user: req.user,
-//         layout: "User/layout",
-//         title: "Hi," + req.user.firstname
-//       });
-//     });
-//   }
-// );
-
 router.post(
   "/editProfile",
   ensureLogin.ensureLoggedIn("signin"),
+  uploadCloud.single("profilepicture"),
   (req, res) => {
-    User.findById(req.user._id, function (err, user) {
+    User.findById(req.user._id, function(err, user) {
       if (!user) {
         return res.redirect("/edit");
       } else {
         var firstname = req.body.firstname;
         var lastname = req.body.lastname;
         var description = req.body.description;
+        var picture = req.file.url;
 
         user.firstname = firstname;
         user.lastname = lastname;
         user.description = description;
+        user.picture = picture;
       }
-      user.save(function (err) {
+      user.save(function(err) {
         if (err) {
           res.redirect("/editprofile");
         } else {
