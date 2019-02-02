@@ -10,12 +10,32 @@ const userSchema = new Schema({
   description: String,
   favorites: [],
   library: [],
-  friends: [
-    {
-      id: String
-    }
-  ]
+  friends: []
 });
+
+userSchema.methods.updateFriends = function updateFriends(
+  friendID
+) {
+  return this.update(
+    {
+      $addToSet: {
+        friends: friendID
+      }
+    },
+    {
+      safe: true,
+      upsert: true
+    },
+    function(err, doc) {
+      if (err) {
+        console.log(err);
+      } else {
+        //do stuff
+      }
+    }
+  );
+};
+
 
 userSchema.methods.updateFavorites = function updateFavorites(
   bookID,

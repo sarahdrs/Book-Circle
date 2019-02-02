@@ -29,11 +29,8 @@
     <a class="result-subtitle">About me:</a>
     <br>
     <a class="result-subtitle">{{this.description}}</a>
-    <br>
-    <form action="/user-detail/{{this._id}}" method="post">
-      <button type="submit" class="btn btn-outline" id="user-details"><span class="glyphicon glyphicon-star"></span>
-        Check details of {{this.firstname}}</button>
-    </form>
+    <br><br>
+    <a class="btn btn-outline-secondary" href="/user-details/{{this._id}}">Check details of {{this.firstname}}</a>
     <hr>
     {{/if}}
   </div>

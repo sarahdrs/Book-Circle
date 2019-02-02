@@ -145,7 +145,7 @@ title {
 }
 .item2{
   width: 10rem;
-  height:20rem;
+  /* height:20rem; */
 }
 .item4{
   grid-column-start: 1;

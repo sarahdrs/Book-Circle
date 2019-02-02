@@ -1,35 +1,70 @@
 <title>User Details</title>
 
 
-
 <div class="details-container">
   <div class="item1">
-    <p>{{result.title}}</p>
+    <p>Details of {{foloweeResults.fistname}} {{foloweeResults.fistname}}</p>
   </div>
   <div>
-    <img class="item2" src="{{result.thumbnail}}" alt={{result.title}}>
+    <img class="item2" src="{{foloweeResults.picture}}" alt={{foloweeResults.fistname}} {{foloweeResults.lastname}}>
   </div>
   <div>
-    <p>Author: {{result.authors}}</p>
-    <p>Categorie: {{result.categories}}</p>
-    <p>Published: {{result.publishedDate}}</p>
-    <p>Description: <br> {{{result.description}}}</p>
-  </div>
-  {{!-- Back to search results Button --}}
-  <div class="item4">
-    <a class="btn btn-outline-secondary" href="/find-book/?book={{result.title}}">Back to search results</a>
-    {{!-- Like Button --}}
-    <form action="/book-details/{{result.id}}/{{result.title}}?favorite=1" method="post">
-      <button type="submit" class="btn btn-outline" id="save-book"><span class="glyphicon glyphicon-heart"></span>
-        Like</button>
+    <p>Firstname: {{foloweeResults.firstname}}</p>
+    <p>Lastname: {{foloweeResults.lastname}}</p>
+    <p>About me: {{foloweeResults.description}}</p>
+    <br><br>
+    {{!-- Follow Button --}}
+
+    <form action="/user-details/{{foloweeResults.id}}" method="post">
+      <button type="submit" class="btn btn-outline" id="follow-user"><span class="glyphicon glyphicon-star"></span>
+        Follow {{foloweeResults.firstname}}? </button>
     </form>
-    {{!-- Read Button --}}
-    <form action="/book-details/{{result.id}}/{{result.title}}?read=1" method="post">
-      <button type="submit" class="btn btn-outline" id="save-book"><span class="glyphicon glyphicon-bookmark"></span>
-        Read</button>
-    </form>
+    <br><br>
+
+
+          <h2>Reading List </h2>
+        </span>
+        <div class="heading">
+          <h3><b>Books that I plan to read</b></h3>
+        </div>
+
+        <div class="books-list">
+          {{#each foloweeResults.favorites}}
+          <div class="book">
+            <img src="{{this.picture}}">
+            <h4><b><a href="/book-details/{{this.title}}">{{this.title}}</a></b></h4>
+          </div>
+          {{/each}}
+        </div>
+     
+
+
+      <div>
+        <div class="Library-List">
+
+          <span class="glyphicon glyphicon-bookmark">
+            <h2>My Library </h2>
+          </span>
+          <div class="heading">
+            <h3><b>Books that I have read</b></h3>
+          </div>
+          <div class="books-list">
+            {{#each foloweeResults.library}}
+            <div class="book">
+              <h4>{{this.title}}</h4>
+              <img src="{{this.picture}}">
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+
+
+
+
   </div>
-</div>
+
 </div>
 
 <script src="/javascripts/script.js"></script>

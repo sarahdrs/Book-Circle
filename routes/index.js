@@ -24,8 +24,8 @@ router.get("/", (req, res, next) => {
 // };
 
 router.get("/find-book", (req, res, next) => {
-  let searchFilter= req.body.filter;
-  console.log("SEARCH FILTER: " + searchFilter)
+  let searchFilter = req.query.filter;
+  console.log("SEARCH FILTER: " + searchFilter);
   let options = {
     key: "",
     field: searchFilter,
@@ -121,16 +121,31 @@ router.get("/find-user", (req, res, next) => {
   );
 });
 
-router.get("/user-details", (req, res, next) => {
-  let bookID = req.params.bookid;
+router.get("/user-details/:userid", (req, res, next) => {
+  let foloweeID = req.params.userid;
+  User.findById(foloweeID, function(err, foloweeResults) {
+    res.render("User/user-details", {
+      foloweeResults,
+      layout: "User/layout"
+    });
+  });
+});
+
+router.post("/user-details/:friendid", (req, res, next) => {
+  const userID = req.user;
+  console.log('user', req.user)
+  const friendID = req.params.friendid;
+  req.user.updateFriends(friendID).then(() => {
+    User.findById(friendID, function(err, foloweeResults) {
+      res.render("User/user-details", {
+        foloweeResults,
+        layout: "User/layout"
+      });
+    });
+  }) 
 
 
-// router.post("/find-user/:id", (req, res) => {
-//   let followeeID = req.query.id;
-//   console.log("FOLOWEE ID: " + followeeID);
-//   res.render("User/find-user")
-
-// })
+});
 
 //dashboard
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
