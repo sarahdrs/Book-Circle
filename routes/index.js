@@ -24,8 +24,8 @@ router.get("/", (req, res, next) => {
 // };
 
 router.get("/find-book", (req, res, next) => {
-  let searchFilter = req.query.filter;
-  console.log(searchFilter);
+  let searchFilter= req.body.filter;
+  console.log("SEARCH FILTER: " + searchFilter)
   let options = {
     key: "",
     field: searchFilter,
@@ -120,6 +120,17 @@ router.get("/find-user", (req, res, next) => {
     }
   );
 });
+
+router.get("/user-details", (req, res, next) => {
+  let bookID = req.params.bookid;
+
+
+// router.post("/find-user/:id", (req, res) => {
+//   let followeeID = req.query.id;
+//   console.log("FOLOWEE ID: " + followeeID);
+//   res.render("User/find-user")
+
+// })
 
 //dashboard
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
