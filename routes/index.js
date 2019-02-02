@@ -130,7 +130,33 @@ router.get("/find-user", (req, res, next) => {
 });
 
 router.get("/user-details/:userid", (req, res, next) => {
+<<<<<<< HEAD
   res.send("lalalalalalala");
+=======
+  let foloweeID = req.params.userid;
+  User.findById(foloweeID, function(err, foloweeResults) {
+    res.render("User/user-details", {
+      foloweeResults,
+      layout: "User/layout"
+    });
+  });
+});
+
+router.post("/user-details/:friendid", (req, res, next) => {
+  const userID = req.user;
+  console.log('user', req.user)
+  const friendID = req.params.friendid;
+  req.user.updateFriends(friendID).then(() => {
+    User.findById(friendID, function(err, foloweeResults) {
+      res.render("User/user-details", {
+        foloweeResults,
+        layout: "User/layout"
+      });
+    });
+  }) 
+
+
+>>>>>>> user-path-continue
 });
 
 //dashboard
