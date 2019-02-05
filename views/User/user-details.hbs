@@ -3,10 +3,10 @@
 
 <div class="details-container">
   <div class="item1">
-    <p>Details of {{foloweeResults.fistname}} {{foloweeResults.fistname}}</p>
+    <p>Details of {{foloweeResults.firstname}} {{foloweeResults.lastname}}</p>
   </div>
   <div>
-    <img class="item2" src="{{foloweeResults.picture}}" alt={{foloweeResults.fistname}} {{foloweeResults.lastname}}>
+    <img class="item2" src="{{foloweeResults.picture}}" alt={{foloweeResults.firstname}} {{foloweeResults.lastname}}>
   </div>
   <div>
     <p>Firstname: {{foloweeResults.firstname}}</p>
@@ -15,49 +15,53 @@
     <br><br>
     {{!-- Follow Button --}}
 
-    <form action="/user-details/{{foloweeResults.id}}" method="post">
+    <form action="/user-details/{{foloweeResults.id}}/{{foloweeResults.firstname}}" method="post">
       <button type="submit" class="btn btn-outline" id="follow-user"><span class="glyphicon glyphicon-star"></span>
         Follow {{foloweeResults.firstname}}? </button>
     </form>
     <br><br>
+    <form action="/dashboard" method="get">
+      <button class="btn btn-outline" id="follow-user"><span class="glyphicon glyphicon-star"></span>
+        Back to Dashboard</button>
+    </form>
 
 
-          <h2>Reading List </h2>
+    <h2>Reading List </h2>
+    </span>
+    <div class="heading">
+      <h3><b>Books that I plan to read</b></h3>
+    </div>
+
+    <div class="books-list">
+      {{#each foloweeResults.favorites}}
+      <div class="book">
+        <img src="{{this.picture}}">
+        <h4><b><a href="/book-details/{{this.title}}">{{this.title}}</a></b></h4>
+      </div>
+      {{/each}}
+    </div>
+
+
+
+    <div>
+      <div class="Library-List">
+
+        <span class="glyphicon glyphicon-bookmark">
+          <h2>My Library </h2>
         </span>
         <div class="heading">
-          <h3><b>Books that I plan to read</b></h3>
+          <h3><b>Books that I have read</b></h3>
         </div>
-
         <div class="books-list">
-          {{#each foloweeResults.favorites}}
+          {{#each foloweeResults.library}}
           <div class="book">
+            <h4>{{this.title}}</h4>
             <img src="{{this.picture}}">
-            <h4><b><a href="/book-details/{{this.title}}">{{this.title}}</a></b></h4>
           </div>
           {{/each}}
         </div>
-     
-
-
-      <div>
-        <div class="Library-List">
-
-          <span class="glyphicon glyphicon-bookmark">
-            <h2>My Library </h2>
-          </span>
-          <div class="heading">
-            <h3><b>Books that I have read</b></h3>
-          </div>
-          <div class="books-list">
-            {{#each foloweeResults.library}}
-            <div class="book">
-              <h4>{{this.title}}</h4>
-              <img src="{{this.picture}}">
-            </div>
-            {{/each}}
-          </div>
-        </div>
       </div>
+    </div>
 
 
 

@@ -129,7 +129,7 @@ router.get("/find-user", (req, res, next) => {
   );
 });
 
-router.get("/user-details/:userid", (req, res, next) => {
+router.get("/user-details/:userid/", (req, res, next) => {
   let foloweeID = req.params.userid;
   User.findById(foloweeID, function(err, foloweeResults) {
     res.render("User/user-details", {
@@ -139,10 +139,11 @@ router.get("/user-details/:userid", (req, res, next) => {
   });
 });
 
-router.post("/user-details/:friendid", (req, res, next) => {
+router.post("/user-details/:friendid/:firstname", (req, res, next) => {
   const userID = req.user;
-  console.log('user', req.user)
+  console.log("user", req.user);
   const friendID = req.params.friendid;
+  const firstname = req.params.firstname;
   req.user.updateFriends(friendID).then(() => {
     User.findById(friendID, function(err, foloweeResults) {
       res.render("User/user-details", {
@@ -150,23 +151,23 @@ router.post("/user-details/:friendid", (req, res, next) => {
         layout: "User/layout"
       });
     });
-  }) 
-
-
+  });
 });
 
 //dashboard
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
-  console.log("REQ USER", req.user._id);
-  console.log(req.user.friends);
-
-  res.render("User/dashboard", {
-    user: req.user,
-    layout: "User/layout",
-    title: "Hello, " + req.user.firstname + "!"
-  });
+  User.findById(req.user)
+    .populate("_friends")
+    .then(completeObject => {
+      console.log(completeObject);
+      res.render("User/dashboard", {
+        user: req.user,
+        completeObject,
+        layout: "User/layout",
+        title: "Hello, " + req.user.firstname + "!"
+      });
+    });
 });
-
 // for testing profile editing
 router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   res.render("User/edit-profile", {
