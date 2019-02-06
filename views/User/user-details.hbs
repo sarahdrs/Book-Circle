@@ -1,75 +1,102 @@
 <title>User Details</title>
 
-
-<div class="details-container">
-  <div class="item1">
-    <p>Details of {{foloweeResults.firstname}} {{foloweeResults.lastname}}</p>
+<br><br><br>
+<div class="results-container">
+  <div id="profilepicture">
+    <a> <img height=150px  src="{{foloweeResults.picture}}" alt={{foloweeResults.firstname}} {{foloweeResults.lastname}}> </a>
   </div>
   <div>
-    <img class="item2" src="{{foloweeResults.picture}}" alt={{foloweeResults.firstname}} {{foloweeResults.lastname}}>
-  </div>
-  <div>
-    <p>Firstname: {{foloweeResults.firstname}}</p>
-    <p>Lastname: {{foloweeResults.lastname}}</p>
-    <p>About me: {{foloweeResults.description}}</p>
+    {{#if foloweeResults.firstname}}
+    <h2><b>{{foloweeResults.firstname}} {{foloweeResults.lastname}}</b></h2>
+    <a class="result-subtitle">About me:</a>
+    <br>
+    <a class="result-subtitle">{{foloweeResults.description}}</a>
     <br><br>
-    {{!-- Follow Button --}}
-
-    <form action="/user-details/{{foloweeResults.id}}/{{foloweeResults.firstname}}" method="post">
+     <form action="/user-details/{{foloweeResults.id}}/{{foloweeResults.firstname}}" method="post">
       <button type="submit" class="btn btn-outline" id="follow-user"><span class="glyphicon glyphicon-star"></span>
         Follow {{foloweeResults.firstname}}? </button>
     </form>
     <br><br>
-    <form action="/dashboard" method="get">
-      <button class="btn btn-outline" id="follow-user"><span class="glyphicon glyphicon-star"></span>
-        Back to Dashboard</button>
-    </form>
+    <hr>
+    {{/if}}
+ 
 
 
-    <h2>Reading List </h2>
-    </span>
-    <div class="heading">
+    <div class="Library-List">
       <h3><b>Books that I plan to read</b></h3>
-    </div>
+      <div class="books-list"></div>
+        {{#each foloweeResults.favorites}}
 
-    <div class="books-list">
-      {{#each foloweeResults.favorites}}
-      <div class="book">
-        <img src="{{this.picture}}">
-        <h4><b><a href="/book-details/{{this.title}}">{{this.title}}</a></b></h4>
-      </div>
-      {{/each}}
-    </div>
-
-
-
-    <div>
-      <div class="Library-List">
-
-        <span class="glyphicon glyphicon-bookmark">
-          <h2>My Library </h2>
-        </span>
-        <div class="heading">
-          <h3><b>Books that I have read</b></h3>
-        </div>
-        <div class="books-list">
-          {{#each foloweeResults.library}}
-          <div class="book">
-            <h4>{{this.title}}</h4>
-            <img src="{{this.picture}}">
-          </div>
-          {{/each}}
-        </div>
-      </div>
-    </div>
-
-
-
-
-
+  <div class="results-container">
+  <div>
+    <a href="/book-details/{{this.id}}/{{this.title}}"><img src="{{this.picture}}" alt={{this.title}}> </a>
+  </div>
+  <div class="book-detail">
+    <p class="result-title">{{this.title}}</p>
+    <p class="result-subtitle"><i>{{this.subtitle}} </i></p>
+    <p class="result-authors">Author: {{this.author}}</p>
+    <p class="result-categories">Category: {{this.categories}}</p>
   </div>
 
+  <div class="button-action">
+    {{!-- Details Button --}}
+    <a class="btn btn-outline-secondary" href="/book-details/{{this.id}}/{{this.title}}">Details</a>
+    {{!-- Like Button --}}
+    <form action="/book-details/{{this.id}}/{{this.title}}?favorite=1" method="post">
+      <button type="submit" class="btn btn-outline" id="save-book"><span class="glyphicon glyphicon-heart"></span>
+        Like</button>
+    </form>
+    {{!-- Read Button --}}
+    <form action="/book-details/{{this.id}}/{{this.title}}?read=1" method="post">
+      <button type="submit" class="btn btn-outline" id="save-book"><span class="glyphicon glyphicon-bookmark"></span>
+        Read</button>
+    </form>
+  </div>
 </div>
+<hr class="result-break">
+        {{/each}}
+      </div>
+       <br><br>
+  
+
+
+      <h3><b>Books that I have read</b></h3>
+    <div class="books-list">
+      {{#each foloweeResults.library}}
+    <div class="results-container">
+  <div>
+    <a href="/book-details/{{this.id}}/{{this.title}}"><img src="{{this.picture}}" alt={{this.title}}> </a>
+  </div>
+  <div class="book-detail">
+    <p class="result-title">{{this.title}}</p>
+    <p class="result-subtitle"><i>{{this.subtitle}} </i></p>
+    <p class="result-authors">Author: {{this.authors}}</p>
+    <p class="result-categories">Category: {{this.categories}}</p>
+  </div>
+
+  <div class="button-action">
+    {{!-- Details Button --}}
+    <a class="btn btn-outline-secondary" href="/book-details/{{this.id}}/{{this.title}}">Details</a>
+    {{!-- Like Button --}}
+    <form action="/book-details/{{this.id}}/{{this.title}}?favorite=1" method="post">
+      <button type="submit" class="btn btn-outline" id="save-book"><span class="glyphicon glyphicon-heart"></span>
+        Like</button>
+    </form>
+    {{!-- Read Button --}}
+    <form action="/book-details/{{this.id}}/{{this.title}}?read=1" method="post">
+      <button type="submit" class="btn btn-outline" id="save-book"><span class="glyphicon glyphicon-bookmark"></span>
+        Read</button>
+    </form>
+  </div>
+</div>
+<hr class="result-break">
+      {{/each}}
+    </div>
+  </div>
+
+ </div>
+</div>
+
 
 <script src="/javascripts/script.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

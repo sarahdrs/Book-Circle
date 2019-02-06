@@ -134,7 +134,9 @@ router.get("/user-details/:userid/", (req, res, next) => {
   User.findById(foloweeID, function(err, foloweeResults) {
     res.render("User/user-details", {
       foloweeResults,
-      layout: "User/layout"
+      layout: "User/layout",
+      title: "Find friends",
+        left: "Dashboard"
     });
   });
 });
@@ -154,8 +156,8 @@ router.post("/user-details/:friendid/:firstname", (req, res, next) => {
   });
 });
 
-// START HENDRICKS CODE  !!!!!!!!!!
-// //dashboard   
+
+// //dashboard    HENDRICKS CODE
 // router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   
 //   let completeObject;
@@ -200,7 +202,9 @@ router.post("/user-details/:friendid/:firstname", (req, res, next) => {
 
 //     })
 // });
-// END HENDRICKS CODE  !!!!!!!!!!
+
+
+
 
 
 // for testing profile editing
