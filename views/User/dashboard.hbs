@@ -103,15 +103,18 @@
       <h2>What are your friends reading?</h2>
       <div id="friends-activity">
 
-        {{#each completeObject._friends}}
+        {{!-- {{#each completeObject._friends}}   START HENDRICKS CODE
         <div class="friend">
           <h4>{{this.firstname}} is reading</h4>
-          <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+          {{#each this.googlePopulatedFavorites}}
+            <img class="item2" src="{{this.thumbnail}}" alt="{{this.title}}">
+          {{/each}}
+          {{!-- <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg"> --}}
         </div>
         {{/each}}
 
       </div>
-    </div>
+    </div>   END HENDRICKS CODE --}}
 
 
 
