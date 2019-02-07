@@ -10,7 +10,8 @@ const userSchema = new Schema({
   description: String,
   favorites: [],
   library: [],
-  friends: []
+  friends: [],
+  facebookId: String,
 });
 
 userSchema.methods.updateFriends = function updateFriends(
@@ -68,6 +69,8 @@ userSchema.methods.updateFavorites = function updateFavorites(
   );
 };
 
+
+
 userSchema.methods.updateLibrary = function updateLibrary(bookID, bookTitle) {
   this.update(
     {
@@ -95,6 +98,11 @@ userSchema.methods.updateLibrary = function updateLibrary(bookID, bookTitle) {
     }
   );
 };
+
+
+
+
+
 
 const User = mongoose.model("User", userSchema);
 

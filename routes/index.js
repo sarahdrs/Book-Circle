@@ -5,23 +5,12 @@ const books = require("google-books-search");
 const ensureLogin = require("connect-ensure-login");
 const axios = require("axios");
 const uploadCloud = require("../config/cloudinary.js");
+const jquery = require ("jquery")
 
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");
 });
-
-//find-book
-
-// var options = {
-//   key: "",
-//   field: "title",
-//   offset: 0,
-//   limit: 15,
-//   type: "books",
-//   order: "relevance",
-//   lang: false
-// };
 
 router.get("/find-book", (req, res, next) => {
   let searchFilter = req.query.filter;
@@ -36,17 +25,15 @@ router.get("/find-book", (req, res, next) => {
     lang: false
   };
   if (req.query.book) {
-    books.search(req.query.book, options, function(error, results) {
+    books.search(req.query.book, options, function (error, results) {
       let results3 = results;
       let message = "";
 
       if (results.length === 0) {
         message = "No books found? Try Harry Potter :-)";
-        results3 = [
-          {
-            title: ""
-          }
-        ];
+        results3 = [{
+          title: ""
+        }];
       }
       if (!error) {
         res.render("User/find-book", {
@@ -74,7 +61,7 @@ router.get("/book-details/:bookid/:booktitle", (req, res, next) => {
   let bookTitle = req.params.booktitle;
   let message = "";
   console.log("THE ID IS: " + bookID);
-  books.lookup(bookID, function(error, result) {
+  books.lookup(bookID, function (error, result) {
     console.log("THE BOOK IS " + result.title);
     res.render("User/book-details", {
       result,
@@ -103,7 +90,7 @@ router.post(
       req.user.updateLibrary(bookID, bookTitle);
     }
 
-    books.lookup(bookID, function(error, result) {
+    books.lookup(bookID, function (error, result) {
       res.render("User/book-details", {
         result,
         layout: "User/layout",
@@ -112,13 +99,42 @@ router.post(
     });
   }
 );
+// $(document).ready(() => {
+// axios.post('/book-details/:bookid/:booktitle/', ensureLogin.ensureLoggedIn("signin"))
+//   .then(result => {
+//     const userID = result.user;
+//     console.log("Der User ist " + userID);
+//     let bookID = result.params.bookid;
+//     let bookTitle = result.params.booktitle;
+//     console.log("Das ist die Book ID " + bookID);
+//     console.log("das ist der buchtitel" + bookTitle);
+//     if (req.query.favorite === "1") {
+//       req.user.updateFavorites(bookID, bookTitle);
+//     } else if (req.query.read === "1") {
+//       req.user.updateLibrary(bookID, bookTitle);
+//     }
+
+//   })})
+  
+
+
+
+
 
 router.get("/find-user", (req, res, next) => {
   let searchName = req.query.user;
-  let regexSearch = { $regex: new RegExp(`.*${searchName}.*`), $options: "i" };
-  User.find(
-    { $or: [{ firstname: regexSearch }, { lastname: regexSearch }] },
-    function(err, userResults) {
+  let regexSearch = {
+    $regex: new RegExp(`.*${searchName}.*`),
+    $options: "i"
+  };
+  User.find({
+      $or: [{
+        firstname: regexSearch
+      }, {
+        lastname: regexSearch
+      }]
+    },
+    function (err, userResults) {
       res.render("User/find-user", {
         userResults,
         layout: "User/layout",
@@ -131,7 +147,7 @@ router.get("/find-user", (req, res, next) => {
 
 router.get("/user-details/:userid", (req, res, next) => {
   let foloweeID = req.params.userid;
-  User.findById(foloweeID, function(err, foloweeResults) {
+  User.findById(foloweeID, function (err, foloweeResults) {
     res.render("User/user-details", {
       foloweeResults,
       layout: "User/layout"
@@ -144,13 +160,13 @@ router.post("/user-details/:friendid", (req, res, next) => {
   console.log('user', req.user)
   const friendID = req.params.friendid;
   req.user.updateFriends(friendID).then(() => {
-    User.findById(friendID, function(err, foloweeResults) {
+    User.findById(friendID, function (err, foloweeResults) {
       res.render("User/user-details", {
         foloweeResults,
         layout: "User/layout"
       });
     });
-  }) 
+  })
 
 
 });
@@ -182,7 +198,7 @@ router.post(
   ensureLogin.ensureLoggedIn("signin"),
   uploadCloud.single("profilepicture"),
   (req, res) => {
-    User.findById(req.user._id, function(err, user) {
+    User.findById(req.user._id, function (err, user) {
       if (!user) {
         return res.redirect("/edit");
       } else {
@@ -196,7 +212,7 @@ router.post(
         user.description = description;
         user.picture = picture;
       }
-      user.save(function(err) {
+      user.save(function (err) {
         if (err) {
           res.redirect("/editprofile");
         } else {

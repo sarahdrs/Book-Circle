@@ -5,6 +5,8 @@ const ensureLogin = require("connect-ensure-login");
 const User = require("../models/user");
 const multer = require("multer");
 const uploadCloud = require("../config/cloudinary.js");
+const Strategy = require('passport-facebook').Strategy;
+
 
 // Add bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -32,7 +34,9 @@ authRoutes.post("/", uploadCloud.single("profilepicture"), (req, res, next) => {
     return;
   }
 
-  User.findOne({ email })
+  User.findOne({
+      email
+    })
     .then(existinguser => {
       if (existinguser !== null) {
         res.render("index", {
@@ -82,6 +86,26 @@ authRoutes.post(
     passReqToCallback: true
   })
 );
+
+// authRoutes.get('/signin/facebook',
+//   passport.authenticate('facebook',{
+//     successRedirect: "/dashboard",
+//     failureRedirect: '/signin'
+//   }),
+// );
+authRoutes.get('/signin/facebook',
+  passport.authenticate('facebook'));
+
+authRoutes.get('/signin/facebook/callback',
+  passport.authenticate('facebook', {
+    failureRedirect: '/signin',
+  }),
+  function (req, res) {
+    res.redirect('/dashboard');
+  });
+
+
+
 
 // logout route
 authRoutes.get("/logout", (req, res) => {

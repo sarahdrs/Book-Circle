@@ -18,11 +18,12 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 const books = require("google-books-search");
 const jquery = require("jquery");
-// const popper=require('popper.js');
-// const bootstrap = require('bootstrap');
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 mongoose
-  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true
+  })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -31,6 +32,7 @@ mongoose
   .catch(err => {
     console.error("Error connecting to mongo", err);
   });
+
 
 const app_name = require("./package.json").name;
 const debug = require("debug")(
@@ -46,7 +48,9 @@ app.use(flash());
 app.use(
   session({
     secret: "stupid",
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
     //resave: true,
     //saveUninitialized: true
   })
@@ -66,22 +70,86 @@ passport.deserializeUser((id, cb) => {
 });
 
 passport.use(
-  new LocalStrategy({ usernameField: "email" }, (param1, password, next) => {
-    User.findOne({ email: param1 }, (err, user) => {
+  new LocalStrategy({
+    usernameField: "email"
+  }, (param1, password, next) => {
+    User.findOne({
+      email: param1
+    }, (err, user) => {
       if (err) {
         return next(err);
       }
       if (!user) {
-        return next(null, false, { message: "Incorrect username" });
+        return next(null, false, {
+          message: "Incorrect username"
+        });
       }
       if (!bcrypt.compareSync(password, user.password)) {
-        return next(null, false, { message: "Incorrect password" });
+        return next(null, false, {
+          message: "Incorrect password"
+        });
       }
 
       return next(null, user);
     });
   })
 );
+
+passport.use(new FacebookStrategy({
+    clientID: process.env['FACEBOOK_CLIENT_ID'],
+    clientSecret: process.env['FACEBOOK_CLIENT_SECRET'],
+    callbackURL: '/signin/facebook/callback'
+  },
+  (accessToken, refreshToken, profile, cb) => {
+    User.findOne({
+      facebookId: profile.id,
+    }).then((user) => {
+      if (user === null) {
+        User.create({
+          facebookId: profile.id,
+          firstname:profile.first_name,
+          lastname:profile.last_name,
+          picture: profile.picture,
+        }).then((user) => {
+          return cb(null, user);
+        }).catch((err) => {
+          return cb(err, null);
+        })
+      } else {
+        return cb(null, user);
+      }
+    })
+  }))
+
+
+
+
+
+
+// function (accessToken, refreshToken, profile, cb) {
+//   User.findOneAndReplace({
+//       id: profile.id
+//     }, {
+//       picture: profile.picture,
+
+//       firstname: profile.first_name,
+
+//       lastname: profile.last_name
+//     }, {
+//       upsert: true,
+//       returnNewDocument: true
+//     },
+//     // function (err, profile) {
+
+//     //   return cb(err, profile);
+//     // }
+//     )
+
+
+//   }
+
+
+// ))
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -90,7 +158,9 @@ app.use(passport.session());
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // Express View engine setup
 

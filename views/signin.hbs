@@ -7,36 +7,29 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="/stylesheets/style.css" />
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	 crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 </head>
 
 <body>
 	<nav class="navbar">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Book Circle</a>
+			<a class="navbar-brand" href="/dashboard">Book Circle</a>
 		</div>
 		<ul class="nav navbar-right">
 			<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 			<li class="nav-item"><a class="nav-link" href="#form">Sign Up</a></li>
-			<li class=" nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/signin" role="button">Sign In<span class="caret"></span></a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">Page 1-1</a>
-					<a class="dropdown-item" href="#">Page 1-2</a>
-					<a class="dropdown-item" href="#">Page 1-3</a>
-				</div>
-			</li>
+			<li class="nav-item"><a class="nav-link" href="/signin">Sign In</a></li>
+
 		</ul>
 	</nav>
 	{{!-- navigation bar --}}
-	
-	
-	
+
+
+
 	<div>
 		<form id="form" action="/signin" method="POST">
-		
+
 			<p>Login</p>
 			<label for="user-email-address">Your email address</label><br>
 			<input type="email" id="email" name="email" placeholder="Enter email address" class="form-control">
@@ -45,11 +38,16 @@
 			<input type="text" id="password" name="password" placeholder="Enter password" class="form-control">
 
 			<button input type="submit">Login</button>
-				{{#if message}}
+			{{#if message}}
 			<div>{{ message }}</div>
 			{{/if}}
+
+			<a class="btn btn-outline-secondary" href="/">Go Back</a>
 		</form>
+		<form id="form" action='/signin/facebook' method="GET">
+			<button input type="submit">Facebook</button>
+			</form>
 	</div>
 
-		<br><br>
+	<br><br>
 </body>
