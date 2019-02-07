@@ -98,58 +98,34 @@ passport.use(
 passport.use(new FacebookStrategy({
     clientID: process.env['FACEBOOK_CLIENT_ID'],
     clientSecret: process.env['FACEBOOK_CLIENT_SECRET'],
-    callbackURL: '/signin/facebook/callback'
+    callbackURL: '/signin/facebook/callback',
+    profileFields: ['id','displayName','photos','emails']
   },
   (accessToken, refreshToken, profile, cb) => {
     User.findOne({
       facebookId: profile.id,
     }).then((user) => {
       if (user === null) {
+        console.log("RESPONSE FROM FACEBOOK", profile)
+        let userName = profile.displayName.split(" ")
         User.create({
           facebookId: profile.id,
-          firstname:profile.first_name,
-          lastname:profile.last_name,
-          picture: profile.picture,
+          firstname:userName[0],
+          lastname:userName[1],
+          picture: profile.photos[0].value,
         }).then((user) => {
           return cb(null, user);
         }).catch((err) => {
           return cb(err, null);
         })
+
       } else {
         return cb(null, user);
       }
     })
+      console.log("Das ist der firstname:" + profile.displayName)
+      console.log("RESPONSE FROM FACEBOOK", profile.photos[0].value)
   }))
-
-
-
-
-
-
-// function (accessToken, refreshToken, profile, cb) {
-//   User.findOneAndReplace({
-//       id: profile.id
-//     }, {
-//       picture: profile.picture,
-
-//       firstname: profile.first_name,
-
-//       lastname: profile.last_name
-//     }, {
-//       upsert: true,
-//       returnNewDocument: true
-//     },
-//     // function (err, profile) {
-
-//     //   return cb(err, profile);
-//     // }
-//     )
-
-
-//   }
-
-
-// ))
 
 app.use(passport.initialize());
 app.use(passport.session());

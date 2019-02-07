@@ -86,13 +86,7 @@ authRoutes.post(
     passReqToCallback: true
   })
 );
-
-// authRoutes.get('/signin/facebook',
-//   passport.authenticate('facebook',{
-//     successRedirect: "/dashboard",
-//     failureRedirect: '/signin'
-//   }),
-// );
+//facebook Route
 authRoutes.get('/signin/facebook',
   passport.authenticate('facebook'));
 
@@ -103,9 +97,6 @@ authRoutes.get('/signin/facebook/callback',
   function (req, res) {
     res.redirect('/dashboard');
   });
-
-
-
 
 // logout route
 authRoutes.get("/logout", (req, res) => {
