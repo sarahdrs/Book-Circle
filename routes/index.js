@@ -177,7 +177,6 @@ router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   User.findById(req.user)
     .populate("_friends")
     .then(completeObject => {
-      console.log(completeObject);
       res.render("User/dashboard", {
         user: req.user,
         completeObject,

@@ -162,6 +162,14 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+var Handlebars = hbs;
+Handlebars.registerHelper("limit", function(arr, limit) {
+  if (!Array.isArray(arr)) {
+    return [];
+  }
+  return arr.slice(-3);
+});
+
 // Express View engine setup
 
 app.use(
