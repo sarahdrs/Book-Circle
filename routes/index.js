@@ -122,7 +122,7 @@ router.get("/find-user", (req, res, next) => {
       res.render("User/find-user", {
         userResults,
         layout: "User/layout",
-        title: "Find friends",
+        title: "Find other readers",
         left: "Dashboard"
       });
     }
@@ -134,7 +134,9 @@ router.get("/user-details/:userid/", (req, res, next) => {
   User.findById(foloweeID, function(err, foloweeResults) {
     res.render("User/user-details", {
       foloweeResults,
-      layout: "User/layout"
+      layout: "User/layout",
+      title: "Reader´s details",
+      left: "Dashboard"
     });
   });
 });
