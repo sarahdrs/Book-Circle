@@ -6,21 +6,19 @@ const userSchema = new Schema({
   lastname: String,
   email: String,
   password: String,
-  picture: String,
+  picture: { type: String, default: "" },
   description: String,
   favorites: [],
   library: [],
-  friends: [],
   facebookId: String,
+  _friends: [{ type: Schema.Types.ObjectId, ref: "User" }]
 });
 
-userSchema.methods.updateFriends = function updateFriends(
-  friendID
-) {
+userSchema.methods.updateFriends = function updateFriends(friendID) {
   return this.update(
     {
       $addToSet: {
-        friends: friendID
+        _friends: friendID
       }
     },
     {
@@ -36,7 +34,6 @@ userSchema.methods.updateFriends = function updateFriends(
     }
   );
 };
-
 
 userSchema.methods.updateFavorites = function updateFavorites(
   bookID,

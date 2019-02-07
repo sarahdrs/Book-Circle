@@ -145,7 +145,7 @@ router.get("/find-user", (req, res, next) => {
   );
 });
 
-router.get("/user-details/:userid", (req, res, next) => {
+router.get("/user-details/:userid/", (req, res, next) => {
   let foloweeID = req.params.userid;
   User.findById(foloweeID, function (err, foloweeResults) {
     res.render("User/user-details", {
@@ -155,10 +155,11 @@ router.get("/user-details/:userid", (req, res, next) => {
   });
 });
 
-router.post("/user-details/:friendid", (req, res, next) => {
+router.post("/user-details/:friendid/:firstname", (req, res, next) => {
   const userID = req.user;
-  console.log('user', req.user)
+  console.log("user", req.user);
   const friendID = req.params.friendid;
+  const firstname = req.params.firstname;
   req.user.updateFriends(friendID).then(() => {
     User.findById(friendID, function (err, foloweeResults) {
       res.render("User/user-details", {
@@ -166,22 +167,71 @@ router.post("/user-details/:friendid", (req, res, next) => {
         layout: "User/layout"
       });
     });
-  })
-
-
+  });
 });
 
 //dashboard
 router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
-  console.log("REQ USER", req.user._id);
-  console.log(req.user.friends);
-
-  res.render("User/dashboard", {
-    user: req.user,
-    layout: "User/layout",
-    title: "Hello, " + req.user.firstname + "!"
-  });
+  User.findById(req.user)
+    .populate("_friends")
+    .then(completeObject => {
+      console.log(completeObject);
+      res.render("User/dashboard", {
+        user: req.user,
+        completeObject,
+        layout: "User/layout",
+        title: "Hello, " + req.user.firstname + "!"
+      });
+    });
 });
+
+// START HENDRIKS CODE
+// //dashboard
+// router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
+
+//   let completeObject;
+
+//   User.findById(req.user)
+//     .populate("_friends")
+//     .then(completeObjectRes => {
+//       completeObject = completeObjectRes;
+//       requestsArr = []
+
+//       // for each friend ...
+//       completeObject._friends.forEach((friend) => {
+
+//         friend.googlePopulatedFavorites = []
+
+//         // for the first 3 favorites
+//         friend.favorites.slice(-3).forEach((favorite) => {
+
+//           // books.lookup() --> wrap this into a Promise
+//           let promise = new Promise(function(resolve, reject) {
+//             books.lookup(favorite.id, (error, result) => {
+//               // self-implemented populate (here: populate from Google Books API)
+//               friend.googlePopulatedFavorites.push(result)
+//               resolve()
+//             })
+//           });
+//           requestsArr.push(promise)
+
+//         })
+//       })
+
+//       // wait for all requests to Google Books to be answered
+//       return Promise.all(requestsArr)
+//     }).then(() => {
+
+//       res.render("User/dashboard", {
+//         user: req.user,
+//         completeObject,
+//         layout: "User/layout",
+//         title: "Hello, " + req.user.firstname + "!"
+//       });
+
+//     })
+// });
+// END HENDRIKS CODE
 
 // for testing profile editing
 router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {

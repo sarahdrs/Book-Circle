@@ -24,15 +24,6 @@
           <img height="100px" src="{{user.picture}}" onerror=" this.src='https://img.bfmtv.com/c/1000/600/988/7452a0ef3e5805e978ac96cb6edb1.jpeg'">
         </div>
 
-        {{!-- I was trying to show a default picture if a user doesn't have one. this doesn't work yet though! --}}
-        {{!-- {{#unless user.picture}}
-        <script>$("
-            #profilepicture").hide()</script>
-        <div id="profilepicturedefault">
-          <img src="https://img.bfmtv.com/c/1000/600/988/7452a0ef3e5805e978ac96cb6edb1.jpeg">
-        </div>
-        {{/unless}} --}}
-
         <p>{{user.description}}</p>
 
 
@@ -100,27 +91,34 @@
     </div>
 
     <div id="db-right-side">
-      <h2>What are your friends reading?</h2>
+      <h2>Your friends</h2>
       <div id="friends-activity">
 
-        {{#each user.friends}}
+        {{#each completeObject._friends}}
         <div class="friend">
           <h4>{{this.firstname}}</h4>
-          <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+          <img src="{{this.picture}}">
+          {{#each this.favorites}}
+          <a href="/book-details/{{this.id}}/{{this.title}}">
+            <p>{{this.title}}</p>
+          </a>
         </div>
         {{/each}}
-        <div class="friend">
-          <h4>Sarah is reading Harry Potter</h4>
+        {{/each}}
+
+
+        {{!-- Hendriks Code
+
+        <div id="db-right-side">
+          <h2>What are your friends reading?</h2>
+          <h4>{{this.firstname}} is reading</h4>
+          {{#each this.googlePopulatedFavorites}}
+          <img class="item2" src="{{this.thumbnail}}" alt="{{this.title}}">
+          {{/each}}
           <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
-        </div>
-        <div class="friend">
-          <h4>Steph is reading Harry Potter</h4>
-          <img src="https://s2982.pcdn.co/wp-content/uploads/2014/08/HP_hc_new_1.jpeg">
+          --}}
         </div>
       </div>
-
-    </div>
-  </div>
 
 
 
