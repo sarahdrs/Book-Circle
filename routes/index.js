@@ -134,9 +134,7 @@ router.get("/user-details/:userid/", (req, res, next) => {
   User.findById(foloweeID, function(err, foloweeResults) {
     res.render("User/user-details", {
       foloweeResults,
-      layout: "User/layout",
-      title: "Find friends",
-        left: "Dashboard"
+      layout: "User/layout"
     });
   });
 });
@@ -156,56 +154,20 @@ router.post("/user-details/:friendid/:firstname", (req, res, next) => {
   });
 });
 
-
-// //dashboard    HENDRICKS CODE
-// router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
-  
-//   let completeObject;
-
-//   User.findById(req.user)
-//     .populate("_friends")
-//     .then(completeObjectRes => {
-//       completeObject = completeObjectRes;
-//       requestsArr = []
-
-//       // for each friend ...
-//       completeObject._friends.forEach((friend) => {
-
-//         friend.googlePopulatedFavorites = []
-
-//         // for the first 3 favorites
-//         friend.favorites.slice(-3).forEach((favorite) => {
-
-//           // books.lookup() --> wrap this into a Promise
-//           let promise = new Promise(function(resolve, reject) {
-//             books.lookup(favorite.id, (error, result) => {
-//               // self-implemented populate (here: populate from Google Books API)
-//               friend.googlePopulatedFavorites.push(result)
-//               resolve()
-//             })
-//           });
-//           requestsArr.push(promise)
-
-//         })
-//       })
-
-//       // wait for all requests to Google Books to be answered
-//       return Promise.all(requestsArr)
-//     }).then(() => {    
-
-//       res.render("User/dashboard", {
-//         user: req.user,
-//         completeObject,
-//         layout: "User/layout",
-//         title: "Hello, " + req.user.firstname + "!"
-//       });
-
-//     })
-// });
-
-
-
-
+//dashboard
+router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
+  User.findById(req.user)
+    .populate("_friends")
+    .then(completeObject => {
+      console.log(completeObject);
+      res.render("User/dashboard", {
+        user: req.user,
+        completeObject,
+        layout: "User/layout",
+        title: "Hello, " + req.user.firstname + "!"
+      });
+    });
+});
 
 // for testing profile editing
 router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
