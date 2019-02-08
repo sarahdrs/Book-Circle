@@ -48,7 +48,7 @@ title {
   margin: 10px 0px;
   border: 3px solid #3c3851;
   display: inline-block;
-  width: 170px;
+  width: 150px;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center center;
@@ -64,7 +64,7 @@ title {
 
 .results-container {
   display: grid;
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
   grid-gap: 0.1rem;
   padding: 0.1rem;
   grid-template-columns: 10rem 30rem 10rem;
