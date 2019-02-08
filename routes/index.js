@@ -12,7 +12,6 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-
 router.get("/imprint-privacy", (req, res, next) => {
   res.render("imprint", {
     layout: "User/layout",
@@ -236,14 +235,17 @@ router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
 //     });
 // });
 
-// for testing profile editing
 router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
-  res.render("User/edit-profile", {
-    user: req.user,
-    layout: "User/layout",
-    title: "Hi," + req.user.firstname,
-    left: "Dashboard"
-  });
+  User.findById(req.user)
+    .populate("_friends")
+    .then(completeObject => {
+      res.render("User/edit-profile", {
+        user: req.user,
+        completeObject,
+        layout: "User/layout",
+        title: "Hi, " + req.user.firstname + "!"
+      });
+    });
 });
 
 router.post(
