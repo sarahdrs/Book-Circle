@@ -168,3 +168,10 @@ title {
   width: auto;
   height: 40px;
 }
+
+
+.imprintcontainer {
+  text-align: left;
+  font-size: 14px;
+  margin: 0px 0px 0px 40px;
+}
