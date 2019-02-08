@@ -11,6 +11,9 @@ const jquery = require("jquery");
 router.get("/", (req, res, next) => {
   res.render("index");
 });
+router.get("/imprint", (req, res, next) => {
+  res.render("imprint");
+});
 
 router.get("/imprint-privacy", (req, res, next) => {
   res.render("imprint", {
