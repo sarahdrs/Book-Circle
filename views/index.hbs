@@ -57,14 +57,20 @@
 			<label for="profilepicture">Upload a Picture</label><br>
 			<input type="file" id="profilepicture" name="profilepicture" class="form-control" required>
 
-			<button input type="submit" value="save">Create Account</button>
+			<button class="signinBtn"type="submit" value="save">Create Account</button>
 
 			{{#if message}}
 			<div>{{ message }}</div>
 			{{/if}}
 		</form>
+		<form id="form" action='/signin/facebook' method="GET">
+			<button class="loginBtn loginBtn--facebook">
+				Sign Up with Facebook
+			</button>
+		</form>
 	</div>
 	<br><br>
 </body>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </html>

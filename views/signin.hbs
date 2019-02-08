@@ -37,7 +37,8 @@
 			<label for="password">Password</label><br>
 			<input type="password" id="password" name="password" placeholder="Enter password" class="form-control">
 
-			<button input type="submit">Login</button>
+			<button  class="signinBtn" type="submit">Login</button>
+			
 			{{#if message}}
 			<div>{{ message }}</div>
 			{{/if}}
@@ -45,8 +46,10 @@
 			<a class="btn btn-outline-secondary" href="/">Go Back</a>
 		</form>
 		<form id="form" action='/signin/facebook' method="GET">
-			<button input type="submit">Facebook</button>
-			</form>
+			<button class="loginBtn loginBtn--facebook">
+				Sign Up with Facebook
+			</button>
+		</form>
 	</div>
 
 	<br><br>
