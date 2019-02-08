@@ -43,6 +43,18 @@ title {
   width: 35rem;
 }
 
+
+#userpicture img {
+  margin: 10px 0px;
+  border: 3px solid #3c3851;
+  display: inline-block;
+  width: 150px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
 #results {
   font-size: 2rem;
   margin-left: 25%;
@@ -52,13 +64,19 @@ title {
 
 .results-container {
   display: grid;
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
   grid-gap: 0.1rem;
   padding: 0.1rem;
   grid-template-columns: 10rem 30rem 10rem;
   grid-auto-rows: 15rem;
   margin-left: 23%;
   width: 52rem;
+}
+
+
+.results-user-book-title {
+  text-align: center;
+  margin-top: 5rem;
 }
 
 .results-container > div {
@@ -126,17 +144,18 @@ title {
 .details-container {
   display: grid;
   margin-bottom: 2rem;
+  margin-right: 6rem;
   grid-gap: 0.1rem;
   padding: 0.1rem;
   grid-template-columns: 20rem 40rem;
   grid-template-rows: 5rem auto 5rem;
-  margin-left: 23%;
+  margin-left: 15%;
   width: 52rem;
 }
 .item1 {
   grid-column-end: span 2;
   font-size: 2rem;
-  text-align: center;
+  text-align: left;
 }
 .item2 {
   width: 10rem;
@@ -149,4 +168,11 @@ title {
   margin: 2%;
   width: auto;
   height: 40px;
+}
+
+
+.imprintcontainer {
+  text-align: left;
+  font-size: 14px;
+  margin: 0px 0px 0px 40px;
 }

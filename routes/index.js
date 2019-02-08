@@ -5,11 +5,18 @@ const books = require("google-books-search");
 const ensureLogin = require("connect-ensure-login");
 const axios = require("axios");
 const uploadCloud = require("../config/cloudinary.js");
-const jquery = require ("jquery")
+const jquery = require("jquery");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");
+});
+
+router.get("/imprint-privacy", (req, res, next) => {
+  res.render("imprint", {
+    layout: "User/layout",
+    title: "Imprint & Privacy"
+  });
 });
 
 router.get("/find-book", (req, res, next) => {
@@ -25,15 +32,17 @@ router.get("/find-book", (req, res, next) => {
     lang: false
   };
   if (req.query.book) {
-    books.search(req.query.book, options, function (error, results) {
+    books.search(req.query.book, options, function(error, results) {
       let results3 = results;
       let message = "";
 
       if (results.length === 0) {
         message = "No books found? Try Harry Potter :-)";
-        results3 = [{
-          title: ""
-        }];
+        results3 = [
+          {
+            title: ""
+          }
+        ];
       }
       if (!error) {
         res.render("User/find-book", {
@@ -61,7 +70,7 @@ router.get("/book-details/:bookid/:booktitle", (req, res, next) => {
   let bookTitle = req.params.booktitle;
   let message = "";
   console.log("THE ID IS: " + bookID);
-  books.lookup(bookID, function (error, result) {
+  books.lookup(bookID, function(error, result) {
     console.log("THE BOOK IS " + result.title);
     res.render("User/book-details", {
       result,
@@ -90,7 +99,7 @@ router.post(
       req.user.updateLibrary(bookID, bookTitle);
     }
 
-    books.lookup(bookID, function (error, result) {
+    books.lookup(bookID, function(error, result) {
       res.render("User/book-details", {
         result,
         layout: "User/layout",
@@ -115,11 +124,6 @@ router.post(
 //     }
 
 //   })})
-  
-
-
-
-
 
 router.get("/find-user", (req, res, next) => {
   let searchName = req.query.user;
@@ -127,18 +131,22 @@ router.get("/find-user", (req, res, next) => {
     $regex: new RegExp(`.*${searchName}.*`),
     $options: "i"
   };
-  User.find({
-      $or: [{
-        firstname: regexSearch
-      }, {
-        lastname: regexSearch
-      }]
+  User.find(
+    {
+      $or: [
+        {
+          firstname: regexSearch
+        },
+        {
+          lastname: regexSearch
+        }
+      ]
     },
-    function (err, userResults) {
+    function(err, userResults) {
       res.render("User/find-user", {
         userResults,
         layout: "User/layout",
-        title: "Find friends",
+        title: "Find other readers",
         left: "Dashboard"
       });
     }
@@ -147,10 +155,12 @@ router.get("/find-user", (req, res, next) => {
 
 router.get("/user-details/:userid/", (req, res, next) => {
   let foloweeID = req.params.userid;
-  User.findById(foloweeID, function (err, foloweeResults) {
+  User.findById(foloweeID, function(err, foloweeResults) {
     res.render("User/user-details", {
       foloweeResults,
-      layout: "User/layout"
+      layout: "User/layout",
+      title: "Reader´s details",
+      left: "Dashboard"
     });
   });
 });
@@ -161,7 +171,7 @@ router.post("/user-details/:friendid/:firstname", (req, res, next) => {
   const friendID = req.params.friendid;
   const firstname = req.params.firstname;
   req.user.updateFriends(friendID).then(() => {
-    User.findById(friendID, function (err, foloweeResults) {
+    User.findById(friendID, function(err, foloweeResults) {
       res.render("User/user-details", {
         foloweeResults,
         layout: "User/layout"
@@ -175,7 +185,6 @@ router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
   User.findById(req.user)
     .populate("_friends")
     .then(completeObject => {
-      console.log(completeObject);
       res.render("User/dashboard", {
         user: req.user,
         completeObject,
@@ -185,62 +194,58 @@ router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
     });
 });
 
-// START HENDRIKS CODE
-// //dashboard
+// //dashboard    HENDRICKS CODE
 // router.get("/dashboard", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
-
 //   let completeObject;
 
 //   User.findById(req.user)
 //     .populate("_friends")
 //     .then(completeObjectRes => {
 //       completeObject = completeObjectRes;
-//       requestsArr = []
+//       requestsArr = [];
 
 //       // for each friend ...
-//       completeObject._friends.forEach((friend) => {
-
-//         friend.googlePopulatedFavorites = []
+//       completeObject._friends.forEach(friend => {
+//         friend.googlePopulatedFavorites = [];
 
 //         // for the first 3 favorites
-//         friend.favorites.slice(-3).forEach((favorite) => {
-
+//         friend.favorites.slice(-3).forEach(favorite => {
 //           // books.lookup() --> wrap this into a Promise
 //           let promise = new Promise(function(resolve, reject) {
 //             books.lookup(favorite.id, (error, result) => {
 //               // self-implemented populate (here: populate from Google Books API)
-//               friend.googlePopulatedFavorites.push(result)
-//               resolve()
-//             })
+//               friend.googlePopulatedFavorites.push(result);
+//               resolve();
+//             });
 //           });
-//           requestsArr.push(promise)
-
-//         })
-//       })
+//           requestsArr.push(promise);
+//         });
+//       });
 
 //       // wait for all requests to Google Books to be answered
-//       return Promise.all(requestsArr)
-//     }).then(() => {
-
+//       return Promise.all(requestsArr);
+//     })
+//     .then(() => {
 //       res.render("User/dashboard", {
 //         user: req.user,
 //         completeObject,
 //         layout: "User/layout",
 //         title: "Hello, " + req.user.firstname + "!"
 //       });
-
-//     })
+//     });
 // });
-// END HENDRIKS CODE
 
-// for testing profile editing
 router.get("/editprofile", ensureLogin.ensureLoggedIn("signin"), (req, res) => {
-  res.render("User/edit-profile", {
-    user: req.user,
-    layout: "User/layout",
-    title: "Hi," + req.user.firstname,
-    left: "Dashboard"
-  });
+  User.findById(req.user)
+    .populate("_friends")
+    .then(completeObject => {
+      res.render("User/edit-profile", {
+        user: req.user,
+        completeObject,
+        layout: "User/layout",
+        title: "Hi, " + req.user.firstname + "!"
+      });
+    });
 });
 
 router.post(
@@ -248,7 +253,7 @@ router.post(
   ensureLogin.ensureLoggedIn("signin"),
   uploadCloud.single("profilepicture"),
   (req, res) => {
-    User.findById(req.user._id, function (err, user) {
+    User.findById(req.user._id, function(err, user) {
       if (!user) {
         return res.redirect("/edit");
       } else {
@@ -262,7 +267,7 @@ router.post(
         user.description = description;
         user.picture = picture;
       }
-      user.save(function (err) {
+      user.save(function(err) {
         if (err) {
           res.redirect("/editprofile");
         } else {

@@ -24,6 +24,12 @@ a {
   margin: 0px 15px 0px 5px;
 }
 
+hr {
+  border-color: #3c3851 !important;
+  height: 1px;
+  width: 95%;
+}
+
 #findbook-button,
 #findfriend-button {
   background: #3c3851;
@@ -87,7 +93,6 @@ a {
 }
 
 #db-middle {
-  border: 1px solid grey;
   border-radius: 3px;
   text-align: center;
   width: 60%;
@@ -226,10 +231,12 @@ a {
 .book img {
   height: 150px;
   margin-bottom: 20px;
+  -webkit-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
 }
 
 #friends-activity {
-  /* border: 1px solid black; nur für den Test der Layout-struktur, lösche ich später */
   width: 100%;
   height: 100%;
   display: flex;
@@ -240,16 +247,55 @@ a {
   align-content: flex-start;
 }
 
-.friend {
-  margin-right: 10px;
+#friends-activity h2 {
+  text-align: center;
+  margin: 0 auto;
 }
 
-.friend img {
-  height: 150px;
+.friend-info {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.friend-info h4 {
+  margin-top: 40px;
+}
+
+.friend-info img {
+  border: 2px solid #3c3851;
+  height: 100px;
   margin-bottom: 20px;
   border-radius: 50%;
-  border: 3px solid #3c3851;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+}
+
+.friend-books {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  align-content: flex-start;
+}
+
+.friend-book img {
+  height: 100px;
+  margin: 10px;
+  -webkit-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
+}
+
+.footer {
+  float: left;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  color: white !important;
+  margin-top: 10px;
+  background-color: #3c3851 !important;
 }
