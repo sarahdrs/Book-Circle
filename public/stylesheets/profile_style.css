@@ -163,6 +163,7 @@ hr {
 .Library-List {
   background-color: #d5d5d5;
   padding: 10px;
+  margin-bottom: 1rem;
 }
 
 .books-list {
@@ -178,6 +179,22 @@ hr {
 .book-img {
   height: 100px;
   margin-bottom: 20px;
+}
+
+.container {
+  position: relative;
+  padding: 0 !important;
+}
+.content {
+  position: absolute;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.spacer {
+  height: 0;
+  overflow: hidden;
 }
 
 /* Edit Profile */
@@ -268,7 +285,6 @@ hr {
 }
 
 .friend-books {
-  /* height: 100%; */
   width: 100%;
   display: flex;
   flex-direction: row;

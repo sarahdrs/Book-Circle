@@ -62,8 +62,13 @@
         <div class="books-list">
           {{#each user.favorites}}
           <div class="book">
-            <img src="{{this.picture}}">
-            <h4><b><a href="/book-details/{{this.id}}/{{this.title}}">{{this.title}}</a></b></h4>
+            <a href="/book-details/{{this.id}}/{{this.title}}"><img src="{{this.picture}}"></a>
+            <div class="container">
+              <div class="content">{{this.title}}
+              </div>
+              <div class="spacer"></div>
+              <span>&nbsp;</span>
+            </div>
           </div>
           {{/each}}
         </div>
@@ -82,8 +87,13 @@
           <div class="books-list">
             {{#each user.library}}
             <div class="book">
-              <h4>{{this.title}}</h4>
-              <img src="{{this.picture}}">
+              <a href="/book-details/{{this.id}}/{{this.title}}">
+                <img src="{{this.picture}}"></a>
+              <div class="container">
+                <div class="content">{{this.title}}
+                </div>
+                <div class="spacer"></div>
+              </div>
             </div>
             {{/each}}
           </div>
