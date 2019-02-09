@@ -26,21 +26,25 @@
 
 {{#each userResults}}
 
-<div class="results-container">
+<div class="results-container-user">
   <div id="userpicture">
     <a> <img height=170px class="item2" src="{{this.picture}}" alt={{this.firstname}} {{this.lastname}}> </a>
   </div>
   <div>
     {{#if this.firstname}}
     <p class="result-title">{{this.firstname}} {{this.lastname}}</p>
+    {{#if this.description}}
     <a class="result-subtitle">About me:</a>
     <br>
-    <a class="result-subtitle">{{this.description}}</a>
+    <a class="result-description">{{this.description}}</a>
     <br><br>
+    {{/if}}
     <a class="btn btn-outline-secondary" href="/user-details/{{this._id}}">Check details of
       {{this.firstname}}</a>
+       <br><br><br><br>
     <hr>
     {{/if}}
+   
   </div>
 </div>
 {{/each}}
