@@ -239,12 +239,6 @@ hr {
 #friends-activity {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-end;
-  align-content: flex-start;
 }
 
 #friends-activity h2 {
@@ -255,6 +249,8 @@ hr {
 .friend-info {
   text-align: center;
   margin: 0 auto;
+  display: block;
+  width: 100%;
 }
 
 .friend-info h4 {
@@ -272,7 +268,7 @@ hr {
 }
 
 .friend-books {
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
   display: flex;
   flex-direction: row;
