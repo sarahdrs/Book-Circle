@@ -264,6 +264,7 @@ hr {
 .friend-info img {
   border: 2px solid #3c3851;
   height: 100px;
+  width: 100px;
   margin-bottom: 20px;
   border-radius: 50%;
   background-repeat: no-repeat;
