@@ -15,5 +15,3 @@ document.addEventListener(
   },
   false
 );
-
-//function to toggle "Results:" in /find-book

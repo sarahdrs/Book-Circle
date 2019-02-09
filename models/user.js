@@ -66,8 +66,6 @@ userSchema.methods.updateFavorites = function updateFavorites(
   );
 };
 
-
-
 userSchema.methods.updateLibrary = function updateLibrary(bookID, bookTitle) {
   this.update(
     {
@@ -96,11 +94,5 @@ userSchema.methods.updateLibrary = function updateLibrary(bookID, bookTitle) {
   );
 };
 
-
-
-
-
-
 const User = mongoose.model("User", userSchema);
-
 module.exports = User;
